@@ -7,6 +7,8 @@ export default function Home() {
   const [chatOpen, setChatOpen] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [messages, setMessages] = useState([]);
+  const [screen, setScreen] = useState("landing");
+  const [activeSection, setActiveSection] = useState(null);
 
   const greetings = [
     "Ehe~ Hello there! Paimon has reviewed the situation. The situation is concerning.",
@@ -88,14 +90,60 @@ setMessages([
 
     setUserInput("");
   };
+  if (screen === "landing") {
+  return (
+    <main className="relative min-h-screen overflow-hidden bg-[#050816] text-[#F7F4EE]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
 
-  if (chatOpen) {
+      <div className="absolute left-10 top-10 text-[#98A8D8]/40 text-4xl">✦</div>
+      <div className="absolute right-16 top-20 text-[#F7D8D2]/40 text-5xl">✧</div>
+      <div className="absolute bottom-20 left-20 text-[#F4A59E]/30 text-5xl">✶</div>
+      <div className="absolute bottom-16 right-24 text-[#98A8D8]/30 text-4xl">✦</div>
+
+      <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-8 text-center">
+        <div className="mb-6 flex gap-3 text-[#F7D8D2]">
+          <span>✦</span>
+          <span>✧</span>
+          <span>✦</span>
+        </div>
+
+        <h1 className="font-cinzel text-5xl font-bold tracking-[0.18em] text-[#F7F4EE] drop-shadow-[0_0_24px_rgba(247,244,238,0.25)] md:text-7xl">
+          GOBLIN GUIDE
+        </h1>
+
+        <div className="mt-5 flex items-center gap-4">
+          <div className="h-px w-28 bg-[#F4A59E]/50" />
+          <span className="text-[#F7D8D2]">✦</span>
+          <div className="h-px w-28 bg-[#F4A59E]/50" />
+        </div>
+
+        <p className="mt-8 max-w-md text-lg leading-8 text-[#C9D3F0]/80">
+          Your questionable companion
+          <br />
+          for questionable decisions.
+        </p>
+
+        <button
+          onClick={() => setScreen("home")}
+          className="mt-12 rounded-full border border-[#98A8D8]/60 bg-[#F7F4EE] px-12 py-5 text-lg font-bold text-[#050816] shadow-[0_0_30px_rgba(244,165,158,0.25)] transition hover:scale-105 hover:shadow-[0_0_45px_rgba(244,165,158,0.35)]"
+        >
+          ✦ Summon Paimon ✦
+        </button>
+
+        <p className="mt-6 text-sm text-[#98A8D8]/70">
+          Paimon is ready to judge your builds.
+        </p>
+      </section>
+    </main>
+  );
+}
+  if (screen === "chat") {
     return (
       <main className="min-h-screen bg-slate-950 text-white p-8">
         <h1 className="text-4xl font-bold mb-8">Goblin Paimon</h1>
 
         <button
-          onClick={() => setChatOpen(false)}
+          onClick={() => setScreen("home")}
           className="mb-6 rounded-xl border border-white/30 px-4 py-2 text-sm hover:bg-white/10"
         >
           ← Back to Goblin Guide
@@ -155,43 +203,29 @@ setMessages([
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-slate-950 text-white p-8">
-      <h1 className="text-5xl font-bold mb-6">Goblin Guide</h1>
+     <h1 className="font-cinzel text-6xl font-bold tracking-wider">
+      GOBLIN GUIDE
+    </h1>
 
-      <p className="text-center max-w-md text-lg mb-8 text-slate-300">
-        Say hello to the best guide in Teyvat.
-        <br />
-        She has seen things.
-        <br />
-        Now she's coping with sass.
-      </p>
 
-      <button
-        onClick={() => {
-          const randomIndex = Math.floor(Math.random() * greetings.length);
-          setMessage(greetings[randomIndex]);
-        }}
-        className="rounded-full bg-white text-slate-950 px-8 py-4 font-bold hover:scale-105 transition"
-      >
-        HELLO
-      </button>
+      <div className="mt-8 grid w-full max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
+  {questions.slice(0, 6).map((question) => (
+    <button
+      key={question.label}
+      onClick={() => setMessage(question.answer)}
+      className="rounded-2xl border border-white/40 px-6 py-4 text-slate-200 hover:bg-white/10 transition"
+    >
+      {question.label}
+    </button>
+  ))}
+</div>
 
-      <div className="mt-8 flex flex-col gap-3">
-        {questions.map((question) => (
-          <button
-            key={question.label}
-            onClick={() => {
-              if (question.label === "💬 Just chat") {
-                setChatOpen(true);
-              } else {
-                setMessage(question.answer);
-              }
-            }}
-            className="rounded-full border border-white/40 px-6 py-3 text-slate-200 hover:bg-white/10 transition"
-          >
-            {question.label}
-          </button>
-        ))}
-      </div>
+<button
+  onClick={() => setScreen("chat")}
+  className="mt-4 w-full max-w-3xl rounded-2xl bg-white px-6 py-4 font-bold text-slate-950 hover:scale-[1.02] transition"
+>
+  💬 Just chat
+</button>
 
       {message && (
         <p className="mt-6 max-w-md text-center text-slate-300">{message}</p>
