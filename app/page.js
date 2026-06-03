@@ -3,57 +3,67 @@
 import { useState } from "react";
 
 export default function Home() {
-  const [message, setMessage] = useState("");
-  const [chatOpen, setChatOpen] = useState(false);
-  const [userInput, setUserInput] = useState("");
-  const [messages, setMessages] = useState([]);
   const [screen, setScreen] = useState("landing");
   const [activeSection, setActiveSection] = useState(null);
-
-  const greetings = [
-    "Ehe~ Hello there! Paimon has reviewed the situation. The situation is concerning.",
-    "Paimon is ready to evaluate your life choices.",
-    "Several artifacts are currently under investigation.",
-    "Somewhere in Fontaine, a Melusine just got concerned.",
-    "Paimon has reviewed the situation. The situation remains concerning.",
-  ];
+  const [userInput, setUserInput] = useState("");
+  const [messages, setMessages] = useState([]);
 
   const questions = [
-    { label: "🪨 What is this thing?", answer: "Paimon has identified a suspicious object. Please stop poking it until further investigation." },
-    { label: "🎒 New character help", answer: "New character detected. Paimon will now calculate the minimum investment required to survive an aggressive bush." },
-    { label: "⚔️ Artifact inspection", answer: "Artifact inspection started. Several substats have already requested legal representation." },
-    { label: "🎰 Should I pull?", answer: "Paimon is opening the emotional damage calculator. Please hold your primogems tightly." },
-    { label: "📚 Explain lore", answer: "Paimon will now translate ancient trauma into normal human language." },
-    { label: "🗺️ I'm lost", answer: "Paimon has reviewed the map. You are not lost. You are conducting unplanned exploration." },
-    { label: "💬 Just chat", answer: null },
+    {
+      label: "🪨 What is this thing?",
+      answer:
+        "Paimon has identified a suspicious object. Please stop poking it until further investigation.",
+    },
+    {
+      label: "🎒 New character help",
+      answer:
+        "New character detected. Paimon will now calculate the minimum investment required to survive an aggressive bush.",
+    },
+    {
+      label: "⚔️ Artifact inspection",
+      answer:
+        "Artifact inspection started. Several substats have already requested legal representation.",
+    },
+    {
+      label: "🎰 Should I pull?",
+      answer:
+        "Paimon is opening the emotional damage calculator. Please hold your primogems tightly.",
+    },
+    {
+      label: "📚 Explain lore",
+      answer:
+        "Paimon will now translate ancient trauma into normal human language.",
+    },
+    {
+      label: "🗺️ I'm lost",
+      answer:
+        "Paimon has reviewed the map. You are not lost. You are conducting unplanned exploration.",
+    },
   ];
 
   const goblinKnowledge = {
-  navia: [
-    "Navia detected. Please confirm crit rate is above 8% before proceeding.",
-    "Somewhere in Fontaine, a Melusine just fainted.",
-    "Navia would like to speak with your artifact inventory.",
-    "Paimon has reviewed the build. The build requires adult supervision.",
-  ],
-
-  bennett: [
-    "Bennett detected. The bad luck is working as intended.",
-    "Bennett has once again discovered a new way to suffer.",
-    "Paimon recommends avoiding explosive optimism.",
-  ],
-
-  qiqi: [
-    "Qiqi detected. More ATK. Always more ATK.",
-    "The child will continue healing until the heat death of the universe.",
-    "Paimon suspects somebody built a hospital instead of a character.",
-  ],
-
-  cyno: [
-    "100 ER detected.",
-    "The burst is now a local myth.",
-    "Children in Sumeru tell stories about it around campfires.",
-  ],
-};
+    navia: [
+      "Navia detected. Please confirm crit rate is above 8% before proceeding.",
+      "Somewhere in Fontaine, a Melusine just fainted.",
+      "Navia would like to speak with your artifact inventory.",
+      "Paimon has reviewed the build. The build requires adult supervision.",
+    ],
+    bennett: [
+      "Bennett detected. The bad luck is working as intended.",
+      "Bennett has once again discovered a new way to suffer.",
+      "Paimon recommends avoiding explosive optimism.",
+    ],
+    qiqi: [
+      "Qiqi detected. More ATK. Always more ATK.",
+      "The child will continue healing until the heat death of the universe.",
+      "Paimon suspects somebody built a hospital instead of a character.",
+    ],
+    cyno: [
+      "100 ER detected.",
+      "The burst is now a local myth.",
+      "Children in Sumeru tell stories about it around campfires.",
+    ],
+  };
 
   const sendMessage = () => {
     if (!userInput.trim()) return;
@@ -63,25 +73,16 @@ export default function Home() {
       input.includes(key)
     );
 
-   let response = "";
+    let response = "";
 
-if (foundKey) {
-  const responses = goblinKnowledge[foundKey];
+    if (foundKey) {
+      const responses = goblinKnowledge[foundKey];
+      response = responses[Math.floor(Math.random() * responses.length)];
+    } else {
+      response =
+        "Paimon is still processing the information. Please wait a moment.";
+    }
 
-  response =
-    responses[
-      Math.floor(Math.random() * responses.length)
-    ];
-} else {
-  response =
-    "Paimon is still processing the information. Please wait a moment.";
-}
-
-setMessages([
-  ...messages,
-  { sender: "user", text: userInput },
-  { sender: "paimon", text: response },
-]);
     setMessages([
       ...messages,
       { sender: "user", text: userInput },
@@ -90,63 +91,157 @@ setMessages([
 
     setUserInput("");
   };
+
   if (screen === "landing") {
-  return (
-    <main className="relative min-h-screen overflow-hidden bg-[#050816] text-[#F7F4EE]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
+    return (
+      <main className="relative min-h-screen overflow-hidden bg-[#050816] text-[#F7F4EE]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
 
-      <div className="absolute left-10 top-10 text-[#98A8D8]/40 text-4xl">✦</div>
-      <div className="absolute right-16 top-20 text-[#F7D8D2]/40 text-5xl">✧</div>
-      <div className="absolute bottom-20 left-20 text-[#F4A59E]/30 text-5xl">✶</div>
-      <div className="absolute bottom-16 right-24 text-[#98A8D8]/30 text-4xl">✦</div>
-
-      <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-8 text-center">
-        <div className="mb-6 flex gap-3 text-[#F7D8D2]">
-          <span>✦</span>
-          <span>✧</span>
-          <span>✦</span>
+        <div className="absolute left-10 top-10 text-4xl text-[#98A8D8]/40">
+          ✦
+        </div>
+        <div className="absolute right-16 top-20 text-5xl text-[#F7D8D2]/40">
+          ✧
+        </div>
+        <div className="absolute bottom-20 left-20 text-5xl text-[#F4A59E]/30">
+          ✶
+        </div>
+        <div className="absolute bottom-16 right-24 text-4xl text-[#98A8D8]/30">
+          ✦
         </div>
 
-        <h1 className="font-cinzel text-5xl font-bold tracking-[0.18em] text-[#F7F4EE] drop-shadow-[0_0_24px_rgba(247,244,238,0.25)] md:text-7xl">
-          GOBLIN GUIDE
-        </h1>
+        <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-8 text-center">
+          <div className="mb-6 flex gap-3 text-[#F7D8D2]">
+            <span>✦</span>
+            <span>✧</span>
+            <span>✦</span>
+          </div>
 
-        <div className="mt-5 flex items-center gap-4">
-          <div className="h-px w-28 bg-[#F4A59E]/50" />
-          <span className="text-[#F7D8D2]">✦</span>
-          <div className="h-px w-28 bg-[#F4A59E]/50" />
-        </div>
+          <h1 className="font-cinzel text-5xl font-bold tracking-[0.18em] text-[#F7F4EE] drop-shadow-[0_0_24px_rgba(247,244,238,0.25)] md:text-7xl">
+            GOBLIN GUIDE
+          </h1>
 
-        <p className="mt-8 max-w-md text-lg leading-8 text-[#C9D3F0]/80">
-          Your questionable companion
-          <br />
-          for questionable decisions.
-        </p>
+          <div className="mt-5 flex items-center gap-4">
+            <div className="h-px w-28 bg-[#F4A59E]/50" />
+            <span className="text-[#F7D8D2]">✦</span>
+            <div className="h-px w-28 bg-[#F4A59E]/50" />
+          </div>
 
+          <p className="mt-8 max-w-md text-lg leading-8 text-[#C9D3F0]/80">
+            Your questionable companion
+            <br />
+            for unsupervised decisions.
+          </p>
+
+          <button
+            onClick={() => setScreen("home")}
+            className="mt-12 rounded-full border border-[#98A8D8]/60 bg-[#F7F4EE] px-12 py-5 text-lg font-bold text-[#050816] shadow-[0_0_30px_rgba(244,165,158,0.25)] transition hover:scale-105 hover:shadow-[0_0_45px_rgba(244,165,158,0.35)]"
+          >
+            ✦ Summon Paimon ✦
+          </button>
+
+          <p className="mt-6 text-sm text-[#98A8D8]/70">
+            Paimon is ready to judge your builds.
+          </p>
+        </section>
+      </main>
+    );
+  }
+
+  if (screen === "home") {
+    return (
+      <main className="relative min-h-screen overflow-hidden bg-[#050816] text-[#F7F4EE]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
+
+        <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-8 py-16 text-center">
+          <button
+            onClick={() => setScreen("landing")}
+            className="absolute left-8 top-8 rounded-xl border border-white/20 px-4 py-2 text-sm text-[#C9D3F0]/80 hover:bg-white/10"
+          >
+            ← Return to the archives
+          </button>
+
+          <p className="mb-3 text-sm uppercase tracking-[0.35em] text-[#98A8D8]/70">
+            Goblin Operations
+          </p>
+
+          <h1 className="font-cinzel text-4xl font-bold tracking-[0.18em] md:text-6xl">
+            CHOOSE YOUR CATASTROPHE
+          </h1>
+
+          <div className="mt-5 flex items-center gap-4">
+            <div className="h-px w-24 bg-[#F4A59E]/50" />
+            <span className="text-[#F7D8D2]">✦</span>
+            <div className="h-px w-24 bg-[#F4A59E]/50" />
+          </div>
+
+          <div className="mt-12 grid w-full max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
+            {questions.map((question) => (
+              <button
+                key={question.label}
+                onClick={() => {
+                  setActiveSection(question);
+                  setScreen("section");
+                }}
+                className="group min-h-36 rounded-3xl border border-[#98A8D8]/30 bg-[#0f172a]/50 p-6 text-left shadow-[0_0_30px_rgba(5,8,22,0.35)] backdrop-blur transition hover:-translate-y-1 hover:border-[#F4A59E]/70 hover:bg-[#1b2450]/60"
+              >
+                <div className="text-3xl">{question.label.split(" ")[0]}</div>
+
+                <div className="mt-5 text-lg font-bold text-[#F7F4EE]">
+                  {question.label.replace(question.label.split(" ")[0], "")}
+                </div>
+
+                <p className="mt-3 text-sm leading-6 text-[#C9D3F0]/70">
+                  Paimon will investigate. Results may be concerning.
+                </p>
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={() => setScreen("chat")}
+            className="mt-6 w-full max-w-4xl rounded-3xl border border-[#F4A59E]/40 bg-[#4C548F]/50 px-8 py-5 text-lg font-bold text-[#F7F4EE] shadow-[0_0_30px_rgba(152,168,216,0.18)] transition hover:-translate-y-1 hover:bg-[#4C548F]/70"
+          >
+            💬 Just chat with Paimon
+          </button>
+        </section>
+      </main>
+    );
+  }
+
+  if (screen === "section") {
+    return (
+      <main className="min-h-screen bg-[#050816] p-8 text-[#F7F4EE]">
         <button
           onClick={() => setScreen("home")}
-          className="mt-12 rounded-full border border-[#98A8D8]/60 bg-[#F7F4EE] px-12 py-5 text-lg font-bold text-[#050816] shadow-[0_0_30px_rgba(244,165,158,0.25)] transition hover:scale-105 hover:shadow-[0_0_45px_rgba(244,165,158,0.35)]"
+          className="mb-8 rounded-xl border border-white/20 px-4 py-2 text-sm text-[#C9D3F0]/80 hover:bg-white/10"
         >
-          ✦ Summon Paimon ✦
+          ← Back to catastrophes
         </button>
 
-        <p className="mt-6 text-sm text-[#98A8D8]/70">
-          Paimon is ready to judge your builds.
+        <h1 className="font-cinzel text-4xl font-bold tracking-[0.12em]">
+          {activeSection?.label}
+        </h1>
+
+        <p className="mt-6 max-w-xl text-[#C9D3F0]/80">
+          {activeSection?.answer}
         </p>
-      </section>
-    </main>
-  );
-}
+      </main>
+    );
+  }
+
   if (screen === "chat") {
     return (
-      <main className="min-h-screen bg-slate-950 text-white p-8">
-        <h1 className="text-4xl font-bold mb-8">Goblin Paimon</h1>
+      <main className="min-h-screen bg-[#050816] p-8 text-[#F7F4EE]">
+        <h1 className="mb-8 font-cinzel text-4xl font-bold tracking-[0.12em]">
+          Goblin Paimon
+        </h1>
 
         <button
           onClick={() => setScreen("home")}
-          className="mb-6 rounded-xl border border-white/30 px-4 py-2 text-sm hover:bg-white/10"
+          className="mb-6 rounded-xl border border-white/20 px-4 py-2 text-sm text-[#C9D3F0]/80 hover:bg-white/10"
         >
-          ← Back to Goblin Guide
+          ← Back to catastrophes
         </button>
 
         <div className="max-w-xl">
@@ -169,7 +264,7 @@ setMessages([
 
             <button
               onClick={sendMessage}
-              className="rounded-xl bg-white text-slate-950 px-4 py-3 font-bold"
+              className="rounded-xl bg-white px-4 py-3 font-bold text-slate-950"
             >
               Send
             </button>
@@ -200,36 +295,4 @@ setMessages([
       </main>
     );
   }
-
-  return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-slate-950 text-white p-8">
-     <h1 className="font-cinzel text-6xl font-bold tracking-wider">
-      GOBLIN GUIDE
-    </h1>
-
-
-      <div className="mt-8 grid w-full max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
-  {questions.slice(0, 6).map((question) => (
-    <button
-      key={question.label}
-      onClick={() => setMessage(question.answer)}
-      className="rounded-2xl border border-white/40 px-6 py-4 text-slate-200 hover:bg-white/10 transition"
-    >
-      {question.label}
-    </button>
-  ))}
-</div>
-
-<button
-  onClick={() => setScreen("chat")}
-  className="mt-4 w-full max-w-3xl rounded-2xl bg-white px-6 py-4 font-bold text-slate-950 hover:scale-[1.02] transition"
->
-  💬 Just chat
-</button>
-
-      {message && (
-        <p className="mt-6 max-w-md text-center text-slate-300">{message}</p>
-      )}
-    </main>
-  );
 }
