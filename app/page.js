@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { goblinKnowledge } from "../data//Users/adelamaceckova/Documents/goblin-guide/data/goblinKnowledge.js";
-import { loreEntries } from "../data//Users/adelamaceckova/Documents/goblin-guide/data/loreEntries.js";
+import { goblinKnowledge } from "../data/goblinKnowledge";
+import { loreEntries } from "../data/loreEntries";
 
 export default function Home() {
   const [screen, setScreen] = useState("landing");
