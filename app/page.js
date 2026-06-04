@@ -11,6 +11,7 @@ export default function Home() {
   const [artifactResult, setArtifactResult] = useState("");
   const [pullInput, setPullInput] = useState("");
   const [pullResult, setPullResult] = useState("");
+  const [selectedLore, setSelectedLore] = useState(null);
 
   const questions = [
     {
@@ -68,7 +69,121 @@ export default function Home() {
       "Children in Sumeru tell stories about it around campfires.",
     ],
   };
+  const loreEntries = {
+    mondstadt: {
+  icon: "🏰",
+  title: "Mondstadt",
+  tag: "City of Freedom",
+  summary:
+    "The Nation of Freedom. Also known as the nation where nobody seems to have a proper job except Jean.",
+  ratings: {
+    Freedom: "⭐⭐⭐⭐⭐",
+    Organization: "⭐",
+    Alcohol: "⭐⭐⭐⭐⭐",
+  },
+  verdict:
+    "Recommended destination: only if you enjoy alcoholism, windmills, and unpaid emotional labor performed by Jean.",
+},
 
+    liyue: {
+      icon: "⛰️",
+      title: "Liyue",
+      tag: "Harbor of Contracts",
+      summary:
+        "A nation run entirely by contracts and people who somehow think paperwork is exciting.",
+      ratings: {
+        Mora: "⭐⭐⭐⭐⭐",
+        Bureaucracy: "⭐⭐⭐⭐",
+        Relaxation: "⭐",
+      },
+      verdict:
+  "Recommended destination: bring a calculator, three business plans, and a backup calculator.",
+    },
+    inazuma: {
+      icon: "⚡",
+      title: "Inazuma",
+      tag: "Island of Thunder",
+      summary:
+        "Several hundred years of unresolved feelings condensed into one island nation.",
+      ratings: {
+        Electricity: "⭐⭐⭐⭐⭐",
+        MentalHealth: "⭐",
+        Vibes: "⭐⭐⭐",
+      },
+      verdict:
+  "Recommended destination: if you enjoy academic excellence, sleep deprivation, and existential crises.",
+   },
+    sumeru: {
+      icon: "🌿",
+     title: "Sumeru",
+      tag: "Land of Wisdom",
+     summary:
+       "A nation where every citizen has either a PhD or an existential crisis.",
+     ratings: {
+       Knowledge: "⭐⭐⭐⭐⭐",
+       Sleep: "⭐",
+       Anxiety: "⭐⭐⭐⭐⭐",
+      }, 
+      verdict:
+  "Recommended destination: if you enjoy academic excellence, sleep deprivation, and existential crises.",
+ },
+    fontaine: {
+     icon: "⚖️",
+     title: "Fontaine",
+     tag: "City of Justice",
+     summary:
+        "Everybody is dramatic. Everybody has trauma. The water is judging you.",
+      ratings: {
+        Drama: "⭐⭐⭐⭐⭐",
+        Fashion: "⭐⭐⭐⭐⭐",
+        EmotionalStability: "⭐",
+      },
+      verdict:
+  "Recommended destination: excellent aesthetics, catastrophic emotional stability.",
+    },
+    natlan: {
+      icon: "🔥",
+     title: "Natlan",
+     tag: "Nation of Fire",
+     summary:
+      "The nation of fire, war, dramatic entrances, and people who looked at danger and said: yes, but make it sporty.",
+     ratings: {
+      Fire: "⭐⭐⭐⭐⭐",
+      Chill: "⭐",
+      DramaticEntrances: "⭐⭐⭐⭐⭐",
+     },
+     verdict:
+  "Recommended destination: if your definition of a relaxing holiday includes explosions.",
+  },
+    nodkrai: {
+     icon: "❄️",
+     title: "Nod Krai",
+     tag: "Moonlit Snowy Land",
+      summary:
+        "A cold northern mystery zone where everyone looks suspicious, the vibes are frozen, and Paimon is already asking whether we packed snacks.",
+     ratings: {
+      Mystery: "⭐⭐⭐⭐⭐",
+     Warmth: "⭐",
+      SuspiciousVibes: "⭐⭐⭐⭐⭐",
+    },
+    verdict:
+  "Recommended destination: bring snacks, warm clothing, and a healthy distrust of everyone.",
+  },
+    snezhnaya: {
+  icon: "❄️",
+  title: "Snezhnaya",
+  tag: "Unknown",
+  summary:
+    "Status: Classified. Paimon has been advised not to comment.",
+  ratings: {
+    Status: "Classified",
+    Risk: "⭐⭐⭐⭐⭐",
+    CommentPermission: "⭐",
+    },
+    verdict:
+  "Paimon recommends pretending you never clicked this.",
+  },
+};
   const sendMessage = () => {
     if (!userInput.trim()) return;
 
@@ -305,11 +420,11 @@ export default function Home() {
             value={artifactInput}
             onChange={(e) => setArtifactInput(e.target.value)}
             placeholder={`Example:
-Flower
-Crit Rate 7.8%
-Crit Damage 14.0%
-DEF 19
-Energy Recharge 5.2%`}
+                          Flower
+                          Crit Rate 7.8%
+                          Crit Damage 14.0%
+                          DEF 19
+                          Energy Recharge 5.2%`}
             className="mt-6 min-h-48 rounded-3xl border border-[#98A8D8]/30 bg-[#0f172a]/60 p-5 text-[#F7F4EE] outline-none placeholder:text-[#C9D3F0]/40 focus:border-[#F4A59E]/70"
           />
 
@@ -332,7 +447,158 @@ Energy Recharge 5.2%`}
       </main>
     );
   }
+  if (
+  screen === "section" &&
+  activeSection?.label === "📚 Explain lore"
+) {
+  if (selectedLore) {
+  const lore = loreEntries[selectedLore];
+  const isClassified = selectedLore === "snezhnaya";
 
+  return (
+    <main className="relative min-h-screen overflow-hidden bg-[#050816] p-8 text-[#F7F4EE]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
+
+      <section className="relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col justify-center">
+        <button
+          onClick={() => setSelectedLore(null)}
+          className="mb-8 w-fit rounded-xl border border-white/20 px-4 py-2 text-sm text-[#C9D3F0]/80 hover:bg-white/10"
+        >
+          ← Back to nations
+        </button>
+
+        <p className="mb-3 text-sm uppercase tracking-[0.35em] text-[#98A8D8]/70">
+          Paimon explains
+        </p>
+
+        <h1 className="font-cinzel text-4xl font-bold tracking-[0.12em] md:text-5xl">
+          {lore.icon} {lore.title}
+        </h1>
+
+        <div className="mt-5 flex items-center gap-4">
+          <div className="h-px w-24 bg-[#F4A59E]/50" />
+          <span className="text-[#F7D8D2]">✦</span>
+          <div className="h-px w-24 bg-[#F4A59E]/50" />
+        </div>
+
+        <div className={`mt-8 rounded-3xl border bg-[#0f172a]/70 p-6 ${
+             isClassified
+             ? "border-slate-500/40"
+             : "border-[#F4A59E]/40"
+     }`}
+>
+          {isClassified ? (
+  <>
+    <p className="text-sm uppercase tracking-[0.35em] text-slate-400">
+      Access denied
+    </p>
+
+    <p className="mt-4 leading-8 text-[#C9D3F0]">
+      Status: Classified.
+      <br />
+      Paimon has been advised not to comment.
+      <br />
+      Multiple government agencies are now looking directly at this page.
+    </p>
+
+    <div className="mt-6 rounded-2xl border border-slate-500/30 bg-slate-950/40 p-4 text-slate-300">
+      🔒 File sealed. Return later with stronger shield.
+    </div>
+  </>
+) : (
+  <>
+    <p className="leading-8 text-[#C9D3F0]">
+      {lore.summary}
+    </p>
+
+    <div className="mt-6 space-y-3">
+      {Object.entries(lore.ratings).map(([label, value]) => (
+        <p key={label} className="text-[#F7F4EE]">
+          <strong>{label}:</strong> {value}
+        </p>
+      ))}
+    </div>
+  </>
+)}
+        </div>
+
+        <div className="mt-6 rounded-3xl border border-[#F4A59E]/40 bg-[#241a28]/70 p-6 shadow-[0_0_30px_rgba(244,165,158,0.15)]">
+          <p className="mb-3 text-sm uppercase tracking-[0.35em] text-[#F7D8D2]">
+                 ✦ Paimon's Verdict ✦
+            </p>
+          <p className="text-lg leading-8 text-[#F7F4EE]">
+               {lore.verdict}
+            </p>
+        </div>
+      </section>
+    </main>
+  );
+}
+  return (
+    <main className="relative min-h-screen overflow-hidden bg-[#050816] p-8 text-[#F7F4EE]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
+
+      <section className="relative z-10 mx-auto flex min-h-screen max-w-4xl flex-col justify-center">
+        <button
+          onClick={() => setScreen("home")}
+          className="mb-8 w-fit rounded-xl border border-white/20 px-4 py-2 text-sm text-[#C9D3F0]/80 hover:bg-white/10"
+        >
+          ← Back to catastrophes
+        </button>
+
+        <p className="mb-3 text-sm uppercase tracking-[0.35em] text-[#98A8D8]/70">
+          Goblin Archives
+        </p>
+
+        <h1 className="font-cinzel text-4xl font-bold tracking-[0.12em] md:text-5xl">
+          EXPLAIN LORE
+        </h1>
+
+        <p className="mt-6 text-[#C9D3F0]/80">
+          Choose a nation for Paimon's highly questionable summary.
+        </p>
+
+        <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+          {Object.entries(loreEntries).map(([key, nation]) => (
+            <button
+              key={key}
+              onClick={() => setSelectedLore(key)}
+              className={`min-h-48 rounded-3xl p-6 text-left shadow-[0_0_30px_rgba(5,8,22,0.35)] transition hover:-translate-y-1 ${
+                   key === "snezhnaya"
+                   ? "border border-slate-500/40 bg-slate-900/40 hover:border-slate-400/60"
+                   : "border border-[#98A8D8]/30 bg-[#0f172a]/60 hover:border-[#F4A59E]/70 hover:bg-[#1b2450]/60"
+    }`}
+            >
+              <div className="flex h-full flex-col justify-between">
+  <div>
+    <div className="mb-6 flex items-center justify-between">
+      <div className="text-5xl">
+        {key === "snezhnaya" ? "🔒" : nation.icon}
+      </div>
+
+      <span className="rounded-full border border-[#98A8D8]/20 px-3 py-1 text-xs uppercase tracking-[0.2em] text-[#98A8D8]/70">
+        {key === "snezhnaya" ? "Classified" : "Archive"}
+      </span>
+    </div>
+
+    <h2 className="font-cinzel text-xl font-bold tracking-[0.08em] text-[#F7F4EE]">
+      {nation.title}
+    </h2>
+
+    <p className="mt-3 text-sm leading-6 text-[#C9D3F0]/70">
+      {nation.tag}
+    </p>
+  </div>
+
+  <div className="mt-6 h-px w-full bg-[#F4A59E]/20" />
+</div>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
   if (screen === "section" && activeSection?.label === "🎰 Should I pull?") {
     const analyzePull = () => {
       const input = pullInput.toLowerCase();
