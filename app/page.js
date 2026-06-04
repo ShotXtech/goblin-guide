@@ -191,7 +191,126 @@ export default function Home() {
       </main>
     );
   }
+  if (
+  screen === "section" &&
+  activeSection?.label === "🎒 New character help"
+) {
+  const analyzeCharacter = () => {
+    const input = userInput.toLowerCase();
 
+    if (!userInput.trim()) {
+      setMessages([
+        {
+          sender: "paimon",
+          text: "Paimon is staring at an empty character report. Please provide the baby goblin.",
+        },
+      ]);
+      return;
+    }
+
+    if (input.includes("furina")) {
+      setMessages([
+        {
+          sender: "paimon",
+          text: "Furina detected. Build priority: ABSOLUTELY YES. Role: dramatic hydro support goblin. Verdict: level her before she sues you emotionally.",
+        },
+      ]);
+      return;
+    }
+
+    if (input.includes("navia")) {
+      setMessages([
+        {
+          sender: "paimon",
+          text: "Navia detected. Build priority: HIGH. Role: geo shotgun princess. Verdict: give her a big umbrella and let her commit numbers.",
+        },
+      ]);
+      return;
+    }
+
+    if (input.includes("bennett")) {
+      setMessages([
+        {
+          sender: "paimon",
+          text: "Bennett detected. Build priority: YES. Role: tiny unlucky attack steroid. Verdict: level him. The circle demands tribute.",
+        },
+      ]);
+      return;
+    }
+
+    if (input.includes("qiqi")) {
+      setMessages([
+        {
+          sender: "paimon",
+          text: "Qiqi detected. Build priority: emotionally complicated. Role: tiny freezer healer. Verdict: she is doing her best, unlike your pity.",
+        },
+      ]);
+      return;
+    }
+
+    setMessages([
+      {
+        sender: "paimon",
+        text: "Paimon has reviewed this character. Verdict: probably build them if they spark joy, but do not bankrupt the resin economy.",
+      },
+    ]);
+  };
+
+  return (
+    <main className="relative min-h-screen overflow-hidden bg-[#050816] p-8 text-[#F7F4EE]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
+
+      <section className="relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col justify-center">
+        <button
+          onClick={() => {
+            setUserInput("");
+            setMessages([]);
+            setScreen("home");
+          }}
+          className="mb-8 w-fit rounded-xl border border-white/20 px-4 py-2 text-sm text-[#C9D3F0]/80 hover:bg-white/10"
+        >
+          ← Back to catastrophes
+        </button>
+
+        <p className="mb-3 text-sm uppercase tracking-[0.3em] text-[#F4A59E]">
+          New character help
+        </p>
+
+        <h1 className="font-cinzel text-4xl font-bold text-[#F7F4EE] md:text-6xl">
+          Who did you drag home?
+        </h1>
+
+        <p className="mt-4 max-w-2xl text-[#C9D3F0]/80">
+          Tell Paimon which character you got, and she will decide whether this
+          is a responsible investment or another resin-based tragedy.
+        </p>
+
+        <textarea
+          value={userInput}
+          onChange={(event) => setUserInput(event.target.value)}
+          placeholder="Example: I just got Furina. Do I build her?"
+          className="mt-8 min-h-32 rounded-2xl border border-white/10 bg-white/5 p-4 text-[#F7F4EE] outline-none placeholder:text-[#C9D3F0]/40 focus:border-[#F4A59E]/60"
+        />
+
+        <button
+          onClick={analyzeCharacter}
+          className="mt-4 rounded-2xl bg-[#F4A59E] px-6 py-4 font-bold text-[#050816] transition hover:bg-[#F7D8D2]"
+        >
+          Ask Paimon for questionable guidance
+        </button>
+
+        {messages.length > 0 && (
+          <div className="mt-8 rounded-3xl border border-[#F4A59E]/30 bg-white/5 p-6 text-[#F7D8D2]">
+            <p className="mb-2 text-xs uppercase tracking-[0.3em] text-[#F4A59E]">
+              Paimon verdict
+            </p>
+            <p className="leading-relaxed">{messages[messages.length - 1].text}</p>
+          </div>
+        )}
+      </section>
+    </main>
+  );
+}
   if (
     screen === "section" &&
     activeSection?.label === "⚔️ Artifact inspection"
