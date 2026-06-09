@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { goblinKnowledge } from "../data/goblinKnowledge";
 import { loreEntries } from "../data/loreEntries";
+import { characterKnowledge } from "/../data/characterKnowledge";
 
 export default function Home() {
   const [screen, setScreen] = useState("landing");
@@ -11,6 +12,8 @@ export default function Home() {
   const [messages, setMessages] = useState([]);
   const [artifactInput, setArtifactInput] = useState("");
   const [artifactResult, setArtifactResult] = useState("");
+  const [characterResult, setCharacterResult] = useState(null);
+  const [characterInput, setCharacterInput] = useState("");
   const [pullInput, setPullInput] = useState("");
   const [pullResult, setPullResult] = useState("");
   const [selectedLore, setSelectedLore] = useState(null);
@@ -47,6 +50,40 @@ export default function Home() {
         "Paimon has reviewed the map. You are not lost. You are conducting unplanned exploration.",
     },
   ];
+  
+  const analyzeCharacter = () => {
+  const input = characterInput.toLowerCase();
+
+  if (!characterInput.trim()) {
+    setCharacterResult({
+      title: "No character detected",
+      role: "Unknown",
+      priority: "Snacks first",
+      recommendation: "Please provide the name of the adopted disaster.",
+      paimon:
+        "Paimon is staring at an empty adoption form. This is not how character help works.",
+    });
+    return;
+  }
+
+  const foundKey = Object.keys(characterKnowledge).find((key) =>
+    input.includes(key)
+  );
+
+  if (foundKey) {
+    setCharacterResult(characterKnowledge[foundKey]);
+    return;
+  }
+
+  setCharacterResult({
+    title: "Unknown character",
+    role: "Under investigation",
+    priority: "Ask Paimon again later",
+    recommendation: "Proceed carefully.",
+    paimon:
+      "Paimon does not recognize this character yet. Either they are new, suspicious, or you typed with goblin energy.",
+  });
+};
 
   const sendMessage = () => {
     if (!userInput.trim()) return;
@@ -196,65 +233,38 @@ export default function Home() {
   activeSection?.label === "🎒 New character help"
 ) {
   const analyzeCharacter = () => {
-    const input = userInput.toLowerCase();
+  const input = characterInput.toLowerCase();
 
-    if (!userInput.trim()) {
-      setMessages([
-        {
-          sender: "paimon",
-          text: "Paimon is staring at an empty character report. Please provide the baby goblin.",
-        },
-      ]);
-      return;
-    }
+  if (!characterInput.trim()) {
+    setCharacterResult({
+      title: "No character detected",
+      role: "Unknown",
+      priority: "Snacks first",
+      recommendation: "Please provide the name of the adopted disaster.",
+      paimon:
+        "Paimon is staring at an empty adoption form. This is not how character help works.",
+    });
+    return;
+  }
 
-    if (input.includes("furina")) {
-      setMessages([
-        {
-          sender: "paimon",
-          text: "Furina detected. Build priority: ABSOLUTELY YES. Role: dramatic hydro support goblin. Verdict: level her before she sues you emotionally.",
-        },
-      ]);
-      return;
-    }
+  const foundKey = Object.keys(characterKnowledge).find((key) =>
+    input.includes(key)
+  );
 
-    if (input.includes("navia")) {
-      setMessages([
-        {
-          sender: "paimon",
-          text: "Navia detected. Build priority: HIGH. Role: geo shotgun princess. Verdict: give her a big umbrella and let her commit numbers.",
-        },
-      ]);
-      return;
-    }
+  if (foundKey) {
+    setCharacterResult(characterKnowledge[foundKey]);
+    return;
+  }
 
-    if (input.includes("bennett")) {
-      setMessages([
-        {
-          sender: "paimon",
-          text: "Bennett detected. Build priority: YES. Role: tiny unlucky attack steroid. Verdict: level him. The circle demands tribute.",
-        },
-      ]);
-      return;
-    }
-
-    if (input.includes("qiqi")) {
-      setMessages([
-        {
-          sender: "paimon",
-          text: "Qiqi detected. Build priority: emotionally complicated. Role: tiny freezer healer. Verdict: she is doing her best, unlike your pity.",
-        },
-      ]);
-      return;
-    }
-
-    setMessages([
-      {
-        sender: "paimon",
-        text: "Paimon has reviewed this character. Verdict: probably build them if they spark joy, but do not bankrupt the resin economy.",
-      },
-    ]);
-  };
+  setCharacterResult({
+    title: "Unknown character",
+    role: "Under investigation",
+    priority: "Ask Paimon again later",
+    recommendation: "Proceed carefully.",
+    paimon:
+      "Paimon does not recognize this character yet. Either they are new, suspicious, or you typed with goblin energy.",
+  });
+};
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#050816] p-8 text-[#F7F4EE]">
@@ -263,8 +273,8 @@ export default function Home() {
       <section className="relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col justify-center">
         <button
           onClick={() => {
-            setUserInput("");
-            setMessages([]);
+            setCharacterInput("");
+            setCharacterResult(null);
             setScreen("home");
           }}
           className="mb-8 w-fit rounded-xl border border-white/20 px-4 py-2 text-sm text-[#C9D3F0]/80 hover:bg-white/10"
@@ -286,8 +296,8 @@ export default function Home() {
         </p>
 
         <textarea
-          value={userInput}
-          onChange={(event) => setUserInput(event.target.value)}
+          value={characterInput}
+          onChange={(event) => setCharacterInput(event.target.value)}
           placeholder="Example: I just got Furina. Do I build her?"
           className="mt-8 min-h-32 rounded-2xl border border-white/10 bg-white/5 p-4 text-[#F7F4EE] outline-none placeholder:text-[#C9D3F0]/40 focus:border-[#F4A59E]/60"
         />
@@ -299,14 +309,42 @@ export default function Home() {
           Ask Paimon for questionable guidance
         </button>
 
-        {messages.length > 0 && (
-          <div className="mt-8 rounded-3xl border border-[#F4A59E]/30 bg-white/5 p-6 text-[#F7D8D2]">
-            <p className="mb-2 text-xs uppercase tracking-[0.3em] text-[#F4A59E]">
-              Paimon verdict
-            </p>
-            <p className="leading-relaxed">{messages[messages.length - 1].text}</p>
+        {characterResult && (
+         <div className="mt-8 rounded-3xl border border-[#98A8D8]/30 bg-[#0f172a]/70 p-6">
+          <p className="mb-3 text-sm uppercase tracking-[0.3em] text-[#98A8D8]/70">
+            Paimon Assessment
+          </p>
+
+          <h2 className="text-3xl font-bold text-[#F7F4EE]">
+            {characterResult.title || "Character detected"}
+          </h2>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            <div className="rounded-2xl border border-[#98A8D8]/20 p-4">
+              <p className="text-sm text-[#C9D3F0]/60">Role</p>
+              <p className="mt-2 font-bold">{characterResult.role}</p>
+            </div>
+
+            <div className="rounded-2xl border border-[#98A8D8]/20 p-4">
+              <p className="text-sm text-[#C9D3F0]/60">Priority</p>
+              <p className="mt-2 font-bold">{characterResult.priority}</p>
+            </div>
+
+            <div className="rounded-2xl border border-[#98A8D8]/20 p-4">
+              <p className="text-sm text-[#C9D3F0]/60">Recommendation</p>
+              <p className="mt-2 font-bold">
+                {characterResult.recommendation}
+              </p>
+            </div>
           </div>
-        )}
+
+        <div className="mt-6 rounded-2xl border border-[#F4A59E]/30 bg-[#241a28]/60 p-5">
+          <p className="text-[#F7D8D2]">
+            {characterResult.paimon}
+          </p>
+        </div>
+      </div>
+    )}
       </section>
     </main>
   );
