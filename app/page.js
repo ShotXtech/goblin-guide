@@ -18,6 +18,46 @@ export default function Home() {
   const [pullInput, setPullInput] = useState("");
   const [pullResult, setPullResult] = useState("");
   const [selectedLore, setSelectedLore] = useState(null);
+  const elementIcons = {
+      Pyro: "🔥",
+      Hydro: "💧",
+      Electro: "⚡",
+      Cryo: "❄️",
+      Dendro: "🌿",
+      Anemo: "🍃",
+      Geo: "🪨",
+      None: "✨",
+    };
+  const elementStyles = {
+    Pyro: "bg-red-500/20 text-red-200",
+    Hydro: "bg-blue-500/20 text-blue-200",
+    Electro: "bg-purple-500/20 text-purple-200",
+    Cryo: "bg-cyan-500/20 text-cyan-200",
+    Dendro: "bg-green-500/20 text-green-200",
+    Anemo: "bg-teal-500/20 text-teal-200",
+    Geo: "bg-yellow-500/20 text-yellow-200",
+    None: "bg-slate-500/20 text-slate-200",
+  };
+  const weaponIcons = {
+      Sword: "🗡️",
+      Claymore: "⚔️",
+      Polearm: "🔱",
+      Bow: "🏹",
+      Catalyst: "📖",
+    };
+
+  const regionIcons = {
+      Mondstadt: "🍃",
+      Liyue: "🪨",
+      Inazuma: "⚡",
+      Sumeru: "🌿",
+      Fontaine: "⚖️",
+      Natlan: "🔥",
+      "Nod-Krai": "🌙",
+      Snezhnaya: "❄️",
+      None: "✨",
+    };
+  
 
   const questions = [
     {
@@ -53,7 +93,7 @@ export default function Home() {
   ];
   
   const analyzeCharacter = () => {
-  const input = characterInput.toLowerCase();
+    const input = characterInput.toLowerCase();
 
   if (!characterInput.trim()) {
     setCharacterResult({
@@ -236,43 +276,6 @@ export default function Home() {
   screen === "section" &&
   activeSection?.label === "🎒 New character help"
 ) {
-  const analyzeCharacter = () => {
-  const input = characterInput.toLowerCase();
-
-  if (!characterInput.trim()) {
-    setCharacterResult({
-      title: "No character detected",
-      role: "Unknown",
-      priority: "Snacks first",
-      recommendation: "Please provide the name of the adopted disaster.",
-      paimon:
-        "Paimon is staring at an empty adoption form. This is not how character help works.",
-    });
-    return;
-  }
-
-  const foundKey = Object.keys(characterKnowledge).find((key) =>
-    input.includes(key)
-  );
-
-  if (foundKey) {
-  setCharacterResult({
-    ...characterKnowledge[foundKey],
-    ...characterMetadata[foundKey],
-  });
-  return;
-}
-
-  setCharacterResult({
-    title: "Unknown character",
-    role: "Under investigation",
-    priority: "Ask Paimon again later",
-    recommendation: "Proceed carefully.",
-    paimon:
-      "Paimon does not recognize this character yet. Either they are new, suspicious, or you typed with goblin energy.",
-  });
-};
-
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#050816] p-8 text-[#F7F4EE]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
@@ -332,11 +335,30 @@ export default function Home() {
             </p>
           )}
 
-          {characterResult.element && (
-            <p className="mt-2 text-sm text-[#C9D3F0]/70">
-              {characterResult.element} • {characterResult.weapon} • {characterResult.region}
-            </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {characterResult.element && (
+            <span
+              className={`rounded-full px-3 py-1 text-sm ${
+                elementStyles[characterResult.element] ||
+                "bg-slate-500/20 text-slate-200"
+              }`}
+            >
+              {elementIcons[characterResult.element] || "✨"} {characterResult.element}
+            </span>
           )}
+
+            {characterResult.weapon && (
+            <span className="rounded-full bg-[#F4A59E]/20 px-3 py-1 text-sm text-[#F7D8D2]">
+              {weaponIcons[characterResult.weapon] || "🧰"} {characterResult.weapon}
+            </span>
+          )}
+
+            {characterResult.region && (
+            <span className="rounded-full bg-[#B8A4E3]/20 px-3 py-1 text-sm text-[#E3D9FF]">
+              {regionIcons[characterResult.region] || "📍"} {characterResult.region}
+            </span>
+          )}
+          </div>
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             <div className="rounded-2xl border border-[#98A8D8]/20 p-4">
