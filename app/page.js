@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { goblinKnowledge } from "../data/goblinKnowledge";
 import { loreEntries } from "../data/loreEntries";
-import { characterKnowledge } from "/../data/characterKnowledge";
+import { characterKnowledge } from "../data/characterKnowledge";
 
 export default function Home() {
   const [screen, setScreen] = useState("landing");
