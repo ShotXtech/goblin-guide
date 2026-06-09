@@ -325,7 +325,12 @@ export default function Home() {
             Paimon Assessment
           </p>
 
-          <h2 className="text-3xl font-bold text-[#F7F4EE]">
+          <h2 className={`text-3xl font-bold ${
+              characterResult.rarity === 5
+                ? "text-[#ffd59e] drop-shadow-[0_0_12px_rgba(247,231,161,0.55)]"
+                : "text-[#dfb5ff] drop-shadow-[0_0_12px_rgba(223,181,255,0.35)]"
+            }`}
+          >
             {characterResult.title || "Character detected"}
           </h2>
 
