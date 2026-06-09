@@ -256,9 +256,12 @@ export default function Home() {
   );
 
   if (foundKey) {
-    setCharacterResult(characterKnowledge[foundKey]);
-    return;
-  }
+  setCharacterResult({
+    ...characterKnowledge[foundKey],
+    ...characterMetadata[foundKey],
+  });
+  return;
+}
 
   setCharacterResult({
     title: "Unknown character",
