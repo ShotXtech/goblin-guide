@@ -256,7 +256,7 @@ export default function Home() {
                 </div>
 
                 <p className="mt-3 text-sm leading-6 text-[#C9D3F0]/70">
-                  Paimon will investigate. Results may be concerning.
+                   {question.answer}
                 </p>
               </button>
             ))}
@@ -519,93 +519,93 @@ export default function Home() {
   activeSection?.label === "📚 Explain lore"
 ) {
   if (selectedLore) {
-  const lore = loreEntries[selectedLore];
-  const isClassified = selectedLore === "snezhnaya";
+    const lore = loreEntries[selectedLore];
+    const isClassified = selectedLore === "snezhnaya";
+
+    return (
+      <main className="relative min-h-screen overflow-hidden bg-[#050816] p-8 text-[#F7F4EE]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
+
+        <section className="relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col justify-center">
+          <button
+            onClick={() => setSelectedLore(null)}
+            className="mb-8 w-fit rounded-xl border border-white/20 px-4 py-2 text-sm text-[#C9D3F0]/80 hover:bg-white/10"
+          >
+            ← Back to nations
+          </button>
+
+          <p className="mb-3 text-sm uppercase tracking-[0.35em] text-[#98A8D8]/70">
+            Paimon explains
+          </p>
+
+          <h1 className="font-cinzel text-4xl font-bold tracking-[0.12em] md:text-5xl">
+            {lore.icon} {lore.title}
+          </h1>
+
+          <div className="mt-5 flex items-center gap-4">
+            <div className="h-px w-24 bg-[#F4A59E]/50" />
+            <span className="text-[#F7D8D2]">✦</span>
+            <div className="h-px w-24 bg-[#F4A59E]/50" />
+          </div>
+
+          <div
+            className={`mt-8 rounded-3xl border bg-[#0f172a]/70 p-6 ${
+              isClassified
+                ? "border-slate-500/40"
+                : "border-[#F4A59E]/40"
+            }`}
+          >
+            {isClassified ? (
+              <>
+                <p className="text-sm uppercase tracking-[0.35em] text-slate-400">
+                  Access denied
+                </p>
+
+                <p className="mt-4 leading-8 text-[#C9D3F0]">
+                  Status: Classified.
+                  <br />
+                  Paimon has been advised not to comment.
+                  <br />
+                  Multiple government agencies are now looking directly at this page.
+                </p>
+
+                <div className="mt-6 rounded-2xl border border-slate-500/30 bg-slate-950/40 p-4 text-slate-300">
+                  🔒 File sealed. Return later with stronger DPS.
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="leading-8 text-[#C9D3F0]">{lore.summary}</p>
+
+                <div className="mt-6 space-y-3">
+                  {Object.entries(lore.ratings).map(([label, value]) => (
+                    <p key={label} className="text-[#F7F4EE]">
+                      <strong>{label}:</strong> {value}
+                    </p>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
+          <div className="mt-6 rounded-3xl border border-[#F4A59E]/40 bg-[#241a28]/70 p-6 shadow-[0_0_30px_rgba(244,165,158,0.15)]">
+            <p className="mb-3 text-sm uppercase tracking-[0.35em] text-[#F7D8D2]">
+              ✦ Paimon's Verdict ✦
+            </p>
+            <p className="text-lg leading-8 text-[#F7F4EE]">
+              {lore.verdict}
+            </p>
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#050816] p-8 text-[#F7F4EE]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
 
-      <section className="relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col justify-center">
-        <button
-          onClick={() => setSelectedLore(null)}
-          className="mb-8 w-fit rounded-xl border border-white/20 px-4 py-2 text-sm text-[#C9D3F0]/80 hover:bg-white/10"
-        >
-          ← Back to nations
-        </button>
-
-        <p className="mb-3 text-sm uppercase tracking-[0.35em] text-[#98A8D8]/70">
-          Paimon explains
-        </p>
-
-        <h1 className="font-cinzel text-4xl font-bold tracking-[0.12em] md:text-5xl">
-          {lore.icon} {lore.title}
-        </h1>
-
-        <div className="mt-5 flex items-center gap-4">
-          <div className="h-px w-24 bg-[#F4A59E]/50" />
-          <span className="text-[#F7D8D2]">✦</span>
-          <div className="h-px w-24 bg-[#F4A59E]/50" />
-        </div>
-
-        <div className={`mt-8 rounded-3xl border bg-[#0f172a]/70 p-6 ${
-             isClassified
-             ? "border-slate-500/40"
-             : "border-[#F4A59E]/40"
-     }`}
->
-          {isClassified ? (
-  <>
-    <p className="text-sm uppercase tracking-[0.35em] text-slate-400">
-      Access denied
-    </p>
-
-    <p className="mt-4 leading-8 text-[#C9D3F0]">
-      Status: Classified.
-      <br />
-      Paimon has been advised not to comment.
-      <br />
-      Multiple government agencies are now looking directly at this page.
-    </p>
-
-    <div className="mt-6 rounded-2xl border border-slate-500/30 bg-slate-950/40 p-4 text-slate-300">
-      🔒 File sealed. Return later with stronger shield.
-    </div>
-  </>
-) : (
-  <>
-    <p className="leading-8 text-[#C9D3F0]">
-      {lore.summary}
-    </p>
-
-    <div className="mt-6 space-y-3">
-      {Object.entries(lore.ratings).map(([label, value]) => (
-        <p key={label} className="text-[#F7F4EE]">
-          <strong>{label}:</strong> {value}
-        </p>
-      ))}
-    </div>
-  </>
-)}
-        </div>
-
-        <div className="mt-6 rounded-3xl border border-[#F4A59E]/40 bg-[#241a28]/70 p-6 shadow-[0_0_30px_rgba(244,165,158,0.15)]">
-          <p className="mb-3 text-sm uppercase tracking-[0.35em] text-[#F7D8D2]">
-                 ✦ Paimon's Verdict ✦
-            </p>
-          <p className="text-lg leading-8 text-[#F7F4EE]">
-               {lore.verdict}
-            </p>
-        </div>
-      </section>
-    </main>
-  );
-}
-  return (
-    <main className="relative min-h-screen overflow-hidden bg-[#050816] p-8 text-[#F7F4EE]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
-
-      <section className="relative z-10 mx-auto flex min-h-screen max-w-4xl flex-col justify-center">
+      <section className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col justify-center">
         <button
           onClick={() => setScreen("home")}
           className="mb-8 w-fit rounded-xl border border-white/20 px-4 py-2 text-sm text-[#C9D3F0]/80 hover:bg-white/10"
@@ -625,41 +625,55 @@ export default function Home() {
           Choose a nation for Paimon's highly questionable summary.
         </p>
 
-        <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-5 lg:grid-cols-4">
           {Object.entries(loreEntries).map(([key, nation]) => (
             <button
-              key={key}
-              onClick={() => setSelectedLore(key)}
-              className={`min-h-48 rounded-3xl p-6 text-left shadow-[0_0_30px_rgba(5,8,22,0.35)] transition hover:-translate-y-1 ${
-                   key === "snezhnaya"
-                   ? "border border-slate-500/40 bg-slate-900/40 hover:border-slate-400/60"
-                   : "border border-[#98A8D8]/30 bg-[#0f172a]/60 hover:border-[#F4A59E]/70 hover:bg-[#1b2450]/60"
-    }`}
-            >
-              <div className="flex h-full flex-col justify-between">
-  <div>
-    <div className="mb-6 flex items-center justify-between">
-      <div className="text-5xl">
-        {key === "snezhnaya" ? "🔒" : nation.icon}
-      </div>
+            key={key}
+            onClick={() => setSelectedLore(key)}
+            className={`group relative min-h-72 overflow-hidden rounded-3xl border text-left shadow-[0_0_30px_rgba(5,8,22,0.35)] transition hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(244,165,158,0.25)] ${
+              key === "snezhnaya"
+                ? "border-slate-500/50 bg-slate-950/70 hover:border-slate-300/70"
+                : "border-[#98A8D8]/35 bg-[#0f172a]/50 hover:border-[#F4A59E]/80"
+            }`}
+          >
+            {nation.image && (
+              <div
+                className={`absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-105 ${
+                  key === "snezhnaya" ? "opacity-35 grayscale" : "opacity-90"
+                }`}
+                style={{ backgroundImage: `url(${nation.image})` }}
+              />
+            )}
 
-      <span className="rounded-full border border-[#98A8D8]/20 px-3 py-1 text-xs uppercase tracking-[0.2em] text-[#98A8D8]/70">
-        {key === "snezhnaya" ? "Classified" : "Archive"}
-      </span>
-    </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/95 via-[#050816]/45 to-[#050816]/10" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,8,22,0.55)_75%)]" />
 
-    <h2 className="font-cinzel text-xl font-bold tracking-[0.08em] text-[#F7F4EE]">
-      {nation.title}
-    </h2>
+            <div className="relative z-10 flex min-h-72 flex-col items-center justify-center p-6 text-center">
+              <div className="absolute right-5 top-5">
+                <span className="rounded-full border border-[#98A8D8]/35 bg-[#050816]/45 px-4 py-1 text-xs uppercase tracking-[0.22em] text-[#D9E1FF]/80 backdrop-blur">
+                  {key === "snezhnaya" ? "Classified" : "Archive"}
+                </span>
+              </div>
 
-    <p className="mt-3 text-sm leading-6 text-[#C9D3F0]/70">
-      {nation.tag}
-    </p>
-  </div>
+              {key === "snezhnaya" && (
+                <div className="mb-4 text-5xl opacity-80">🔒</div>
+              )}
 
-  <div className="mt-6 h-px w-full bg-[#F4A59E]/20" />
-</div>
-            </button>
+              <h2 className="font-cinzel text-3xl font-bold tracking-[0.06em] text-[#F7F4EE] drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+                {nation.title}
+              </h2>
+
+              <p className="mt-3 max-w-48 text-base leading-7 text-[#F7F4EE]/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+                {nation.tag}
+              </p>
+
+              {key === "snezhnaya" && (
+                <p className="mt-5 max-w-48 text-sm leading-6 text-slate-300/80">
+                  Paimon has been advised not to comment.
+                </p>
+              )}
+            </div>
+          </button>
           ))}
         </div>
       </section>

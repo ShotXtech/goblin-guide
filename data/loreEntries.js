@@ -1,6 +1,7 @@
 export const loreEntries = {
     mondstadt: {
-  icon: "🏰",
+  image: "/lore/Mondstad.webp",
+      icon: "🏰",
   title: "Mondstadt",
   tag: "City of Freedom",
   summary:
@@ -15,6 +16,7 @@ export const loreEntries = {
 },
 
     liyue: {
+      image: "/lore/Lihue.webp",
       icon: "⛰️",
       title: "Liyue",
       tag: "Harbor of Contracts",
@@ -28,7 +30,9 @@ export const loreEntries = {
       verdict:
   "Recommended destination: bring a calculator, three business plans, and a backup calculator.",
     },
+
     inazuma: {
+      image: "/lore/Inazuma.webp",
       icon: "⚡",
       title: "Inazuma",
       tag: "Island of Thunder",
@@ -42,7 +46,9 @@ export const loreEntries = {
       verdict:
   "Recommended destination: if you enjoy academic excellence, sleep deprivation, and existential crises.",
    },
+
     sumeru: {
+      image: "/lore/Sumeru.webp",
       icon: "🌿",
      title: "Sumeru",
       tag: "Land of Wisdom",
@@ -57,10 +63,11 @@ export const loreEntries = {
   "Recommended destination: if you enjoy academic excellence, sleep deprivation, and existential crises.",
  },
     fontaine: {
-     icon: "⚖️",
-     title: "Fontaine",
-     tag: "City of Justice",
-     summary:
+      image: "/lore/Fontaine.webp",
+      icon: "⚖️",
+      title: "Fontaine",
+      tag: "City of Justice",
+      summary:
         "Everybody is dramatic. Everybody has trauma. The water is judging you.",
       ratings: {
         Drama: "⭐⭐⭐⭐⭐",
@@ -71,6 +78,7 @@ export const loreEntries = {
   "Recommended destination: excellent aesthetics, catastrophic emotional stability.",
     },
     natlan: {
+      image: "/lore/Natlan.webp",
       icon: "🔥",
      title: "Natlan",
      tag: "Nation of Fire",
@@ -85,9 +93,10 @@ export const loreEntries = {
   "Recommended destination: if your definition of a relaxing holiday includes explosions.",
   },
     nodkrai: {
-     icon: "❄️",
-     title: "Nod Krai",
-     tag: "Moonlit Snowy Land",
+      image: "/lore/NodKrai.webp",
+      icon: "❄️",
+      title: "Nod-Krai",
+      tag: "Moonlit Snowy Land",
       summary:
         "A cold northern mystery zone where everyone looks suspicious, the vibes are frozen, and Paimon is already asking whether we packed snacks.",
      ratings: {
@@ -99,12 +108,13 @@ export const loreEntries = {
   "Recommended destination: bring snacks, warm clothing, and a healthy distrust of everyone.",
   },
     snezhnaya: {
-  icon: "❄️",
-  title: "Snezhnaya",
-  tag: "Unknown",
-  summary:
-    "Status: Classified. Paimon has been advised not to comment.",
-  ratings: {
+      image: "lore/Snezhnaya.webp",
+      icon: "❄️",
+      title: "Snezhnaya",
+      tag: "Unknown",
+      summary:
+        "Status: Classified. Paimon has been advised not to comment.",
+      ratings: {
     Status: "Classified",
     Risk: "⭐⭐⭐⭐⭐",
     CommentPermission: "⭐",

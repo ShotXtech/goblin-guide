@@ -187,6 +187,7 @@ albedo: {
     paimon:
         "Yelan detected. Stylish, dangerous, and somehow your rotation just got faster.",
     },
+
     keqing: {
   title: "Keqing",
   role: "Electro DPS",
@@ -665,7 +666,7 @@ gorou: {
     "Gorou detected. Emotional support dog. Military strategist. Same person.",
 },
 
-kujouSara: {
+sara: {
   title: "Kujou Sara",
   role: "Electro Support",
   priority: "ER → ATK",
