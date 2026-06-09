@@ -4,6 +4,7 @@ import { useState } from "react";
 import { goblinKnowledge } from "../data/goblinKnowledge";
 import { loreEntries } from "../data/loreEntries";
 import { characterKnowledge } from "../data/characterKnowledge";
+import {characterMetadata} from "../data/characterMetadata";
 
 export default function Home() {
   const [screen, setScreen] = useState("landing");
@@ -71,7 +72,10 @@ export default function Home() {
   );
 
   if (foundKey) {
-    setCharacterResult(characterKnowledge[foundKey]);
+    setCharacterResult({
+    ...characterKnowledge[foundKey],
+    ...characterMetadata[foundKey],
+    });
     return;
   }
 
