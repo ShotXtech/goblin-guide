@@ -319,6 +319,12 @@ export default function Home() {
             {characterResult.title || "Character detected"}
           </h2>
 
+          {characterResult.element && (
+            <p className="mt-2 text-sm text-[#C9D3F0]/70">
+              {characterResult.element} • {characterResult.weapon} • {characterResult.region}
+            </p>
+          )}
+
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             <div className="rounded-2xl border border-[#98A8D8]/20 p-4">
               <p className="text-sm text-[#C9D3F0]/60">Role</p>
