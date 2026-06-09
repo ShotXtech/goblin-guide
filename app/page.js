@@ -20,6 +20,8 @@ export default function Home() {
   const [pullInput, setPullInput] = useState("");
   const [pullResult, setPullResult] = useState("");
   const [selectedLore, setSelectedLore] = useState(null);
+
+
   const analyzeCharacter = () => {
     const input = characterInput.toLowerCase();
 
@@ -552,7 +554,9 @@ export default function Home() {
         <p className="mt-6 text-[#C9D3F0]/80">
           Choose a nation for Paimon's highly questionable summary.
         </p>
-
+        <div className="mt-6 w-fit rounded-2xl border border-[#F4A59E]/30 bg-[#241a28]/60 px-5 py-3 text-sm text-[#F7D8D2] shadow-[0_0_25px_rgba(244,165,158,0.12)]">
+          ✦ Paimon has organized these files. This should worry you.
+        </div>
         <div className="mt-10 grid grid-cols-2 gap-5 lg:grid-cols-4">
           {Object.entries(loreEntries).map(([key, nation]) => (
             <button
