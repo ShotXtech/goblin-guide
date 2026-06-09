@@ -5,6 +5,8 @@ import { goblinKnowledge } from "../data/goblinKnowledge";
 import { loreEntries } from "../data/loreEntries";
 import { characterKnowledge } from "../data/characterKnowledge";
 import {characterMetadata} from "../data/characterMetadata";
+import { questions } from "../data/questions";
+import { elementIcons, weaponIcons, regionIcons, elementStyles, } from "../data/characterDisplay";
 
 export default function Home() {
   const [screen, setScreen] = useState("landing");
@@ -18,80 +20,6 @@ export default function Home() {
   const [pullInput, setPullInput] = useState("");
   const [pullResult, setPullResult] = useState("");
   const [selectedLore, setSelectedLore] = useState(null);
-  const elementIcons = {
-      Pyro: "🔥",
-      Hydro: "💧",
-      Electro: "⚡",
-      Cryo: "❄️",
-      Dendro: "🌿",
-      Anemo: "🍃",
-      Geo: "🪨",
-      None: "✨",
-    };
-  const elementStyles = {
-    Pyro: "bg-red-500/20 text-red-200",
-    Hydro: "bg-blue-500/20 text-blue-200",
-    Electro: "bg-purple-500/20 text-purple-200",
-    Cryo: "bg-cyan-500/20 text-cyan-200",
-    Dendro: "bg-green-500/20 text-green-200",
-    Anemo: "bg-teal-500/20 text-teal-200",
-    Geo: "bg-yellow-500/20 text-yellow-200",
-    None: "bg-slate-500/20 text-slate-200",
-  };
-  const weaponIcons = {
-      Sword: "🗡️",
-      Claymore: "⚔️",
-      Polearm: "🔱",
-      Bow: "🏹",
-      Catalyst: "📖",
-    };
-
-  const regionIcons = {
-      Mondstadt: "🍃",
-      Liyue: "🪨",
-      Inazuma: "⚡",
-      Sumeru: "🌿",
-      Fontaine: "⚖️",
-      Natlan: "🔥",
-      "Nod-Krai": "🌙",
-      Snezhnaya: "❄️",
-      None: "✨",
-    };
-  
-
-  const questions = [
-    {
-      label: "🪨 What is this thing?",
-      answer:
-        "Paimon has identified a suspicious object. Please stop poking it until further investigation.",
-    },
-    {
-      label: "🎒 New character help",
-      answer:
-        "New character detected. Paimon will now calculate the minimum investment required to survive an aggressive bush.",
-    },
-    {
-      label: "⚔️ Artifact inspection",
-      answer:
-        "Artifact inspection started. Several substats have already requested legal representation.",
-    },
-    {
-      label: "🎰 Should I pull?",
-      answer:
-        "Paimon is opening the emotional damage calculator. Please hold your primogems tightly.",
-    },
-    {
-      label: "📚 Explain lore",
-      answer:
-        "Paimon will now translate ancient trauma into normal human language.",
-    },
-    {
-      label: "🗺️ I'm lost",
-      answer:
-        "Paimon has reviewed the map. You are not lost. You are conducting unplanned exploration.",
-    },
-  ];
-  
   const analyzeCharacter = () => {
     const input = characterInput.toLowerCase();
 
