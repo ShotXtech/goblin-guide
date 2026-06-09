@@ -326,6 +326,12 @@ export default function Home() {
             {characterResult.title || "Character detected"}
           </h2>
 
+          {characterResult.rarity && (
+            <p className="mt-2 text-[#F4A59E]">
+              {"⭐".repeat(characterResult.rarity)}
+            </p>
+          )}
+
           {characterResult.element && (
             <p className="mt-2 text-sm text-[#C9D3F0]/70">
               {characterResult.element} • {characterResult.weapon} • {characterResult.region}
