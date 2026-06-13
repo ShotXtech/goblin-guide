@@ -1,4 +1,4 @@
-import { artifactCharacterPreferences } from "..data/artifactCharacterPreferences.js";
+import { artifactCharacterPreferences } from "./artifactCharacterPreferences.js";
 
 export const premiumArtifactStats = ["Crit Rate", "Crit Damage"];
 
@@ -24,6 +24,7 @@ export const inspectArtifact = ({
   artifactLevel,
   artifactMainStat,
   artifactSubstats,
+  artifactTargetCharacter,
 }) => {
   let score = 0;
 
@@ -59,6 +60,55 @@ export const inspectArtifact = ({
   else if (score >= 4) rating = "C";
   else if (score >= 2) rating = "D";
 
+  const targetKey = artifactTargetCharacter?.trim().toLowerCase();
+  const targetCharacter = targetKey
+    ? artifactCharacterPreferences[targetKey]
+    : null;
+
+  const selectedStats = [
+    artifactMainStat,
+    ...artifactSubstats
+      .filter((substat) => substat.value)
+      .map((substat) => substat.stat),
+  ];
+
+  let characterMatch = null;
+
+  if (targetKey && targetCharacter) {
+    const matchedStats = selectedStats.filter((stat) =>
+      [...targetCharacter.wants, ...targetCharacter.mainStats].includes(stat)
+    );
+
+    const missingStats = targetCharacter.wants.filter(
+      (stat) => !selectedStats.includes(stat)
+    );
+
+    let matchRating = "Weak Match";
+
+    if (matchedStats.length >= 4) matchRating = "Excellent Match";
+    else if (matchedStats.length >= 3) matchRating = "Strong Match";
+    else if (matchedStats.length >= 2) matchRating = "Possible Match";
+
+    characterMatch = {
+      title: targetCharacter.title,
+      matchRating,
+      matchedStats,
+      missingStats,
+      verdict: targetCharacter.verdict,
+    };
+  }
+
+  if (targetKey && !targetCharacter) {
+    characterMatch = {
+      title: artifactTargetCharacter,
+      matchRating: "Unknown Character",
+      matchedStats: [],
+      missingStats: [],
+      verdict:
+        "Paimon does not have artifact preferences for this character yet. The archive is pretending this is fine.",
+    };
+  }
+
   return {
     artifactType,
     artifactLevel,
@@ -68,5 +118,6 @@ export const inspectArtifact = ({
     goodStats,
     badStats,
     verdict: artifactVerdicts[rating],
+    characterMatch,
   };
 };

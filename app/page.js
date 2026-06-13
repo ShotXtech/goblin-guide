@@ -401,6 +401,7 @@ export default function Home() {
         artifactLevel,
         artifactMainStat,
         artifactSubstats,
+        artifactTargetCharacter,
       });
 
       setArtifactResult(result);
@@ -448,6 +449,7 @@ export default function Home() {
               className="w-full rounded-2xl border border-[#98A8D8]/30 bg-[#050816] px-4 py-3 text-[#F7F4EE] outline-none placeholder:text-[#C9D3F0]/40 focus:border-[#F4A59E]/70"
             />
           </label>
+
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             <label className="rounded-3xl border border-[#98A8D8]/30 bg-[#0f172a]/60 p-5">
               <p className="mb-3 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
@@ -640,7 +642,51 @@ export default function Home() {
                   )}
                 </div>
               </div>
+              {artifactResult.characterMatch && (
+                <div className="mt-6 rounded-2xl border border-[#98A8D8]/30 bg-[#111936]/60 p-5">
+                  <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/80">
+                    Character Match
+                  </p>
 
+                  <h3 className="text-xl font-bold text-[#F7F4EE]">
+                    {artifactResult.characterMatch.title}
+                  </h3>
+
+                  <p className="mt-2 font-bold text-[#F7D8D2]">
+                    {artifactResult.characterMatch.matchRating}
+                  </p>
+
+                  {artifactResult.characterMatch.matchedStats.length > 0 && (
+                    <div className="mt-4">
+                      <p className="mb-2 text-sm text-[#C9D3F0]/70">
+                        Useful for this character:
+                      </p>
+                      <div className="space-y-1 text-[#C9D3F0]">
+                        {artifactResult.characterMatch.matchedStats.map((stat) => (
+                          <p key={stat}>✓ {stat}</p>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {artifactResult.characterMatch.missingStats.length > 0 && (
+                    <div className="mt-4">
+                      <p className="mb-2 text-sm text-[#C9D3F0]/70">
+                        Missing / wanted:
+                      </p>
+                      <div className="space-y-1 text-[#C9D3F0]/80">
+                        {artifactResult.characterMatch.missingStats.map((stat) => (
+                          <p key={stat}>⚠ {stat}</p>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <p className="mt-4 leading-7 text-[#F7F4EE]">
+                    {artifactResult.characterMatch.verdict}
+                  </p>
+                </div>
+              )}
               <div className="mt-6 rounded-2xl border border-[#F4A59E]/30 bg-[#241a28]/60 p-5">
                 <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#F7D8D2]/80">
                   Paimon's Verdict
