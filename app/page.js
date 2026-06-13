@@ -442,12 +442,25 @@ export default function Home() {
               Who is this for?
             </p>
 
-            <input
-              value={artifactTargetCharacter}
-              onChange={(e) => setArtifactTargetCharacter(e.target.value)}
-              placeholder="Example: Furina, Navia, Bennett..."
-              className="w-full rounded-2xl border border-[#98A8D8]/30 bg-[#050816] px-4 py-3 text-[#F7F4EE] outline-none placeholder:text-[#C9D3F0]/40 focus:border-[#F4A59E]/70"
-            />
+            <div className="relative">
+              <select
+                value={artifactTargetCharacter}
+                onChange={(e) => setArtifactTargetCharacter(e.target.value)}
+                className="w-full appearance-none rounded-2xl border border-[#98A8D8]/30 bg-[#050816] px-4 py-3 pr-12 text-[#F7F4EE] outline-none transition focus:border-[#F4A59E]/70"
+              >
+                <option value="">No specific character</option>
+
+                {Object.entries(characterKnowledge).map(([key, character]) => (
+                  <option key={key} value={key}>
+                    {character.title || key}
+                  </option>
+                ))}
+              </select>
+
+              <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#F4A59E]/70">
+                ▼
+              </span>
+            </div>
           </label>
 
           <div className="mt-8 grid gap-5 md:grid-cols-3">
