@@ -833,7 +833,7 @@ export default function Home() {
             >
               {lore.image && (
                 <div
-                  className="pointer-events-none absolute inset-x-0 top-0 h-[26rem] bg-cover bg-center opacity-35"
+                  className="pointer-events-none absolute inset-x-0 top-0 h-[26rem] bg-cover bg-top opacity-75"
                   style={{ backgroundImage: `url(${lore.image})` }}
                 />
               )}
@@ -918,13 +918,15 @@ export default function Home() {
                     <br />
                     The Fatui are ███████████████
                     <br />
-                    Several important details have been ███████████
+                    Several ███████████████ have been ███████████
                     <br />
                     Paimon has been advised not to comment.
                   </p>
 
-                  <div className="mt-5 rounded-xl border border-slate-700/40 bg-black/30 px-4 py-3 text-xs uppercase tracking-[0.25em] text-slate-400">
-                    Connection monitored • Access logged • Remain calm
+                  <div className="mt-5 rounded-xl border border-slate-700/40 bg-black/30 px-4 py-3 text-center text-xs uppercase tracking-[0.25em] text-slate-400">
+                    Connection monitored • Access logged
+                    <br />
+                    • Remain calm •
                   </div>
 
                   <div className="mt-6 rounded-2xl border border-slate-500/30 bg-slate-950/40 p-4 text-slate-300">
