@@ -1,4 +1,5 @@
 import { artifactCharacterPreferences } from "./artifactCharacterPreferences.js";
+import { characterKnowledge } from "./characterKnowledge.js";
 
 export const premiumArtifactStats = ["Crit Rate", "Crit Damage"];
 
@@ -90,7 +91,7 @@ export const inspectArtifact = ({
     else if (matchedStats.length >= 2) matchRating = "Possible Match";
 
     characterMatch = {
-      title: targetCharacter.title,
+      title: characterKnowledge[targetKey]?.title || targetKey,
       matchRating,
       matchedStats,
       missingStats,
