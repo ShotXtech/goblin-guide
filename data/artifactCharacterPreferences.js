@@ -707,4 +707,5 @@ export const artifactCharacterPreferences = {
         mainStats: ["ATK%", "Elemental Mastery", "Crit Rate", "Crit Damage"],
         verdict: "Traveler wants whatever the current element has decided to make everyone suffer with.",
     },
+
 };

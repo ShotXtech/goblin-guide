@@ -20,6 +20,31 @@ export const artifactVerdicts = {
   D: "Paimon is concerned. This artifact is standing near the strongbox.",
   F: "The recommended owner is the artifact strongbox.",
 };
+
+const getStatQualityBonus = (stat, value) => {
+  const numberValue = Number(value);
+
+  if (!numberValue) return 0;
+
+  if (stat === "Crit Rate") {
+    if (numberValue >= 12) return 3;
+    if (numberValue >= 8) return 2;
+    if (numberValue >= 4) return 1;
+  }
+
+  if (stat === "Crit Damage") {
+    if (numberValue >= 24) return 3;
+    if (numberValue >= 16) return 2;
+    if (numberValue >= 8) return 1;
+  }
+
+  if (["ATK%", "HP%", "DEF%", "Energy Recharge", "Elemental Mastery"].includes(stat)) {
+    if (numberValue >= 20) return 2;
+    if (numberValue >= 10) return 1;
+  }
+
+  return 0;
+};
 export const inspectArtifact = ({
   artifactType,
   artifactLevel,
@@ -34,6 +59,8 @@ export const inspectArtifact = ({
 
   artifactSubstats.forEach((substat) => {
     const stat = substat.stat;
+    const qualityBonus = getStatQualityBonus(stat, substat.value);
+    score += qualityBonus;
 
     if (premiumArtifactStats.includes(stat)) {
       score += 3;
@@ -83,6 +110,12 @@ export const inspectArtifact = ({
     const missingStats = targetCharacter.wants.filter(
       (stat) => !selectedStats.includes(stat)
     );
+    const mainStatMatch =
+      targetCharacter.mainStats.includes(artifactMainStat);
+
+    if (mainStatMatch) {
+      score += 4;
+    }
 
     let matchRating = "Weak Match";
 
@@ -95,6 +128,7 @@ export const inspectArtifact = ({
       matchRating,
       matchedStats,
       missingStats,
+      mainStatMatch,
       verdict: targetCharacter.verdict,
     };
   }
