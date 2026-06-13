@@ -1,3 +1,5 @@
+import { artifactCharacterPreferences } from "..data/artifactCharacterPreferences.js";
+
 export const premiumArtifactStats = ["Crit Rate", "Crit Damage"];
 
 export const goodArtifactStats = [

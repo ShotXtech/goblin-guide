@@ -31,6 +31,7 @@ export default function Home() {
     { stat: "Energy Recharge", value: "" },
     { stat: "ATK%", value: "" },
   ]);
+  const [artifactTargetCharacter, setArtifactTargetCharacter] = useState("");
 
   const archiveQuote =
     archiveQuotes[Math.floor(Math.random() * archiveQuotes.length)];
@@ -435,7 +436,18 @@ export default function Home() {
             Choose the artifact details. Paimon will inspect the evidence and decide
             whether this relic deserves a future.
           </p>
+          <label className="mt-6 block rounded-3xl border border-[#98A8D8]/30 bg-[#0f172a]/60 p-5">
+            <p className="mb-3 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
+              Who is this for?
+            </p>
 
+            <input
+              value={artifactTargetCharacter}
+              onChange={(e) => setArtifactTargetCharacter(e.target.value)}
+              placeholder="Example: Furina, Navia, Bennett..."
+              className="w-full rounded-2xl border border-[#98A8D8]/30 bg-[#050816] px-4 py-3 text-[#F7F4EE] outline-none placeholder:text-[#C9D3F0]/40 focus:border-[#F4A59E]/70"
+            />
+          </label>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             <label className="rounded-3xl border border-[#98A8D8]/30 bg-[#0f172a]/60 p-5">
               <p className="mb-3 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
