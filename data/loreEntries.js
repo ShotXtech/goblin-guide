@@ -3,121 +3,141 @@ export const loreEntries = {
     image: "/lore/Mondstad.webp",
     icon: "🏰",
     title: "Mondstadt",
-    tag: "City of Freedom",
+    tag: "The Nation of Freedom",
     summary:
-      "The Nation of Freedom. Also known as the nation where nobody seems to have a proper job except Jean.",
+      "A city of freedom, wind, and suspiciously unemployed Knights. Everyone drinks, no one pays, and yet somehow it works? Jean deserves a medal. Or a vacation.",
     ratings: {
       Freedom: "⭐⭐⭐⭐⭐",
-      Organization: "⭐",
+      Organization: "⭐☆☆☆☆",
       Alcohol: "⭐⭐⭐⭐⭐",
+      Responsibility: "⭐☆☆☆☆",
+      Vibes: "⭐⭐⭐⭐☆",
     },
     verdict:
-      "Recommended destination: only if you enjoy alcoholism, windmills, and unpaid emotional labor performed by Jean.",
+      "Great place to live if you enjoy freedom, dandelions, and chaos.",
   },
 
   liyue: {
     image: "/lore/Lihue.webp",
     icon: "⛰️",
     title: "Liyue",
-    tag: "Harbor of Contracts",
+    tag: "The Harbor of Contracts",
     summary:
-      "A nation run entirely by contracts and people who somehow think paperwork is exciting.",
+      "A golden harbor where contracts are sacred, Mora is religion, and half the population appears to be running a business side quest. Beautiful, expensive, legally binding.",
     ratings: {
       Mora: "⭐⭐⭐⭐⭐",
-      Bureaucracy: "⭐⭐⭐⭐",
-      Relaxation: "⭐",
+      Contracts: "⭐⭐⭐⭐⭐",
+      Bureaucracy: "⭐⭐⭐⭐☆",
+      Relaxation: "⭐⭐☆☆☆",
+      Vibes: "⭐⭐⭐⭐⭐",
     },
     verdict:
-      "Recommended destination: bring a calculator, three business plans, and a backup calculator.",
+      "Excellent destination if you enjoy mountains, markets, and signing documents you absolutely did not read.",
   },
 
   inazuma: {
     image: "/lore/Inazuma.webp",
     icon: "⚡",
     title: "Inazuma",
-    tag: "Island of Thunder",
+    tag: "The Nation of Eternity",
     summary:
-      "Several hundred years of unresolved feelings condensed into one island nation.",
+      "A stormy island nation powered by lightning, tradition, and several hundred years of unresolved feelings. Gorgeous scenery. Questionable leadership era. Emotional damage included.",
     ratings: {
-      Electricity: "⭐⭐⭐⭐⭐",
-      MentalHealth: "⭐",
-      Vibes: "⭐⭐⭐",
+      Thunder: "⭐⭐⭐⭐⭐",
+      Drama: "⭐⭐⭐⭐⭐",
+      Safety: "⭐⭐☆☆☆",
+      "Emotional Stability": "⭐☆☆☆☆",
+      Vibes: "⭐⭐⭐⭐☆",
     },
     verdict:
-      "Recommended destination: if you enjoy academic excellence, sleep deprivation, and existential crises.",
+      "Visit for the scenery. Stay because the boat schedule is complicated and someone declared eternity again.",
   },
 
   sumeru: {
     image: "/lore/Sumeru.webp",
     icon: "🌿",
     title: "Sumeru",
-    tag: "Land of Wisdom",
+    tag: "The Land of Wisdom",
     summary:
-      "A nation where every citizen has either a PhD or an existential crisis.",
+      "A nation of rainforest, desert, scholars, ancient secrets, and people who turned homework into a government system. Everyone is clever. Nobody is sleeping enough.",
     ratings: {
       Knowledge: "⭐⭐⭐⭐⭐",
-      Sleep: "⭐",
+      Sleep: "⭐☆☆☆☆",
       Anxiety: "⭐⭐⭐⭐⭐",
+      Mushrooms: "⭐⭐⭐⭐☆",
+      Vibes: "⭐⭐⭐⭐⭐",
     },
     verdict:
-      "Recommended destination: if you enjoy academic excellence, sleep deprivation, and existential crises.",
+      "Recommended if you enjoy books, forbidden knowledge, and being gently attacked by academic burnout.",
   },
+
   fontaine: {
     image: "/lore/Fontaine.webp",
     icon: "⚖️",
     title: "Fontaine",
-    tag: "City of Justice",
+    tag: "The Nation of Justice",
     summary:
-      "Everybody is dramatic. Everybody has trauma. The water is judging you.",
+      "A glamorous water nation where everyone is dramatic, everyone has trauma, and the legal system appears to have theater kid energy. The water is judging you.",
     ratings: {
       Drama: "⭐⭐⭐⭐⭐",
       Fashion: "⭐⭐⭐⭐⭐",
-      EmotionalStability: "⭐",
+      Justice: "⭐⭐⭐⭐☆",
+      "Emotional Stability": "⭐☆☆☆☆",
+      Vibes: "⭐⭐⭐⭐⭐",
     },
     verdict:
-      "Recommended destination: excellent aesthetics, catastrophic emotional stability.",
+      "Excellent aesthetics. Catastrophic emotional stability. Paimon recommends bringing tissues and a lawyer.",
   },
+
   natlan: {
     image: "/lore/Natlan.webp",
     icon: "🔥",
     title: "Natlan",
-    tag: "Nation of Fire",
+    tag: "The Nation of Fire",
     summary:
-      "The nation of fire, war, dramatic entrances, and people who looked at danger and said: yes, but make it sporty.",
+      "A fiery nation of heat, competition, dramatic entrances, and people who looked at danger and said: yes, but make it sporty.",
     ratings: {
       Fire: "⭐⭐⭐⭐⭐",
-      Chill: "⭐",
-      DramaticEntrances: "⭐⭐⭐⭐⭐",
+      Chill: "⭐☆☆☆☆",
+      Energy: "⭐⭐⭐⭐⭐",
+      "Dramatic Entrances": "⭐⭐⭐⭐⭐",
+      Vibes: "⭐⭐⭐⭐☆",
     },
     verdict:
-      "Recommended destination: if your definition of a relaxing holiday includes explosions.",
+      "Recommended if your definition of a relaxing holiday includes explosions, cheering, and questionable survival instincts.",
   },
+
   nodkrai: {
     image: "/lore/NodKrai.webp",
-    icon: "❄️",
+    icon: "🌙",
     title: "Nod-Krai",
-    tag: "Moonlit Snowy Land",
+    tag: "The Moonlit Snowy Land",
     summary:
-      "A cold northern mystery zone where everyone looks suspicious, the vibes are frozen, and Paimon is already asking whether we packed snacks.",
+      "A cold northern mystery zone where everyone looks suspicious, the moon is doing something weird, and Paimon is already checking whether we packed snacks.",
     ratings: {
       Mystery: "⭐⭐⭐⭐⭐",
-      Warmth: "⭐",
-      SuspiciousVibes: "⭐⭐⭐⭐⭐",
+      Warmth: "⭐☆☆☆☆",
+      "Suspicious Vibes": "⭐⭐⭐⭐⭐",
+      "Snack Risk": "⭐⭐⭐⭐☆",
+      Vibes: "⭐⭐⭐⭐⭐",
     },
     verdict:
-      "Recommended destination: bring snacks, warm clothing, and a healthy distrust of everyone.",
+      "Bring snacks, warm clothing, and a healthy distrust of anyone standing dramatically in the snow.",
   },
+
   snezhnaya: {
-    image: "lore/Snezhnaya.webp",
+    image: "/lore/Snezhnaya.webp",
     icon: "❄️",
     title: "Snezhnaya",
-    tag: "Unknown",
+    tag: "Classified Northern Empire",
     summary:
-      "Status: Classified. Paimon has been advised not to comment.",
+      "Status: Classified. Paimon has been advised not to comment. Multiple Fatui employees are now standing behind you.",
     ratings: {
       Status: "Classified",
       Risk: "⭐⭐⭐⭐⭐",
-      CommentPermission: "⭐",
+      Warmth: "⭐☆☆☆☆",
+      Secrets: "⭐⭐⭐⭐⭐",
+      "Comment Permission": "⭐☆☆☆☆",
     },
     verdict:
       "Paimon recommends pretending you never clicked this.",
