@@ -1,5 +1,7 @@
 "use client";
 
+import GoblinButton from "../components/ui/GoblinButton";
+import GoblinCard from "../components/ui/GoblinCard";
 import { useState } from "react";
 import { goblinKnowledge } from "../data/goblinKnowledge";
 import { loreEntries } from "../data/loreEntries";
@@ -162,12 +164,12 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
 
         <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-8 py-16 text-center">
-          <button
+          <GoblinButton
             onClick={() => setScreen("landing")}
-            className="absolute left-8 top-8 rounded-xl border border-white/20 px-4 py-2 text-sm text-[#C9D3F0]/80 hover:bg-white/10"
+            className="absolute left-8 top-8 rounded-xl px-4 py-2"
           >
             ← Return to the archives
-          </button>
+          </GoblinButton>
 
           <p className="mb-3 text-sm uppercase tracking-[0.35em] text-[#98A8D8]/70">
             Goblin Operations
@@ -264,7 +266,7 @@ export default function Home() {
           </button>
 
           {characterResult && (
-            <div className="mt-8 rounded-3xl border border-[#98A8D8]/30 bg-[#0f172a]/70 p-6">
+            <GoblinCard className="mt-8 bg-[#0f172a]/70">
               <p className="mb-3 text-sm uppercase tracking-[0.3em] text-[#98A8D8]/70">
                 Paimon Assessment
               </p>
@@ -352,7 +354,7 @@ export default function Home() {
               <div className="mt-6 rounded-2xl border border-[#F4A59E]/30 bg-[#241a28]/60 p-5">
                 <p className="text-[#F7D8D2]">{characterResult.paimon}</p>
               </div>
-            </div>
+            </GoblinCard>
           )}
         </section>
       </main>
