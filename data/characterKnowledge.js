@@ -4,6 +4,12 @@ export const characterKnowledge = {
     role: "Universal Support",
     priority: "ER → HP → Crit",
     recommendation: "Build immediately.",
+    synergy: [
+      "Jean — team healing makes Furina very pleased and your HP bar less cursed.",
+      "Charlotte — keeps the team alive while Furina does dramatic Hydro paperwork.",
+      "Neuvillette — Hydro royalty nonsense. Extremely effective.",
+      "Navia — buffs Navia's cannon crimes.",
+    ],
     paimon: "Congratulations. You accidentally made a good decision.",
   },
 
@@ -12,6 +18,12 @@ export const characterKnowledge = {
     role: "Geo DPS",
     priority: "Crit → ATK → More Crit",
     recommendation: "Build immediately.",
+    synergy: [
+      "Zhongli — shield, Geo resonance, and emotional support rock.",
+      "Bennett — turns Navia's shotgun into a workplace safety violation.",
+      "Furina — buffs the cannon. Paimon fears the cannon.",
+      "Albedo — produces Geo crumbs for Navia's crystal economy.",
+    ],
     paimon:
       "Navia detected. Please confirm your artifacts are not committing crimes.",
   },
@@ -21,6 +33,12 @@ export const characterKnowledge = {
     role: "Support",
     priority: "ER → HP",
     recommendation: "Build immediately.",
+    synergy: [
+      "Almost everyone — Bennett has illegally entered most team comps.",
+      "Navia — ATK buff makes the umbrella cannon deeply unreasonable.",
+      "Diluc — classic Pyro unga bunga support package.",
+      "Xiangling — the National Team goblin engine.",
+    ],
     paimon: "Bennett remains the answer to most life problems.",
   },
 
@@ -418,8 +436,14 @@ export const characterKnowledge = {
   charlotte: {
     title: "Charlotte",
     role: "Cryo Support / Healer",
-    priority: "ATK → ER",
+    priority: "ER → ATK → Healing Bonus",
     recommendation: "Build if your team needs healing and journalism.",
+    synergy: [
+      "Furina — Charlotte helps balance Furina's HP drain. Very good. Very responsible. Suspiciously adult.",
+      "Wriothesley — Cryo friend, healing, and courtroom-adjacent punching.",
+      "Ayaka — Freeze team comfort pick with healing attached.",
+      "Neuvillette — comfy healer option when the Hydro dragon is doing Hydro dragon things.",
+    ],
     paimon:
       "Charlotte detected. Local reporter has arrived to document your mistakes.",
   },

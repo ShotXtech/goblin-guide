@@ -269,10 +269,11 @@ export default function Home() {
                 Paimon Assessment
               </p>
 
-              <h2 className={`text-3xl font-bold ${characterResult.rarity === 5
-                ? "text-[#ffd59e] drop-shadow-[0_0_12px_rgba(247,231,161,0.55)]"
-                : "text-[#dfb5ff] drop-shadow-[0_0_12px_rgba(223,181,255,0.35)]"
-                }`}
+              <h2
+                className={`text-3xl font-bold ${characterResult.rarity === 5
+                    ? "text-[#ffd59e] drop-shadow-[0_0_12px_rgba(247,231,161,0.55)]"
+                    : "text-[#dfb5ff] drop-shadow-[0_0_12px_rgba(223,181,255,0.35)]"
+                  }`}
               >
                 {characterResult.title || "Character detected"}
               </h2>
@@ -290,19 +291,22 @@ export default function Home() {
                       "bg-slate-500/20 text-slate-200"
                       }`}
                   >
-                    {elementIcons[characterResult.element] || "✨"} {characterResult.element}
+                    {elementIcons[characterResult.element] || "✨"}{" "}
+                    {characterResult.element}
                   </span>
                 )}
 
                 {characterResult.weapon && (
                   <span className="rounded-full bg-[#F4A59E]/20 px-3 py-1 text-sm text-[#F7D8D2]">
-                    {weaponIcons[characterResult.weapon] || "🧰"} {characterResult.weapon}
+                    {weaponIcons[characterResult.weapon] || "🧰"}{" "}
+                    {characterResult.weapon}
                   </span>
                 )}
 
                 {characterResult.region && (
                   <span className="rounded-full bg-[#B8A4E3]/20 px-3 py-1 text-sm text-[#E3D9FF]">
-                    {regionIcons[characterResult.region] || "📍"} {characterResult.region}
+                    {regionIcons[characterResult.region] || "📍"}{" "}
+                    {characterResult.region}
                   </span>
                 )}
               </div>
@@ -326,10 +330,27 @@ export default function Home() {
                 </div>
               </div>
 
+              {characterResult.synergy && (
+                <div className="mt-6 rounded-2xl border border-[#98A8D8]/25 bg-[#080d22]/60 p-5">
+                  <p className="mb-4 text-sm uppercase tracking-[0.3em] text-[#98A8D8]/70">
+                    Works Well With
+                  </p>
+
+                  <div className="space-y-3">
+                    {characterResult.synergy.map((item) => (
+                      <div
+                        key={item}
+                        className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[#C9D3F0]"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="mt-6 rounded-2xl border border-[#F4A59E]/30 bg-[#241a28]/60 p-5">
-                <p className="text-[#F7D8D2]">
-                  {characterResult.paimon}
-                </p>
+                <p className="text-[#F7D8D2]">{characterResult.paimon}</p>
               </div>
             </div>
           )}
