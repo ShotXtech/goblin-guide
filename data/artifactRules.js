@@ -103,25 +103,45 @@ export const inspectArtifact = ({
   let characterMatch = null;
 
   if (targetKey && targetCharacter) {
+    const slotMainStats = Array.isArray(targetCharacter.mainStats)
+      ? targetCharacter.mainStats
+      : targetCharacter.mainStats?.[artifactType] || [];
+
+    const allMainStats = Array.isArray(targetCharacter.mainStats)
+      ? targetCharacter.mainStats
+      : Object.values(targetCharacter.mainStats || {}).flat();
+
+    const usefulStats = [
+      ...targetCharacter.wants,
+      ...allMainStats,
+    ];
+
     const matchedStats = selectedStats.filter((stat) =>
-      [...targetCharacter.wants, ...targetCharacter.mainStats].includes(stat)
+      usefulStats.includes(stat)
     );
 
     const missingStats = targetCharacter.wants.filter(
       (stat) => !selectedStats.includes(stat)
     );
-    const mainStatMatch =
-      targetCharacter.mainStats.includes(artifactMainStat);
+
+    const mainStatMatch = slotMainStats.includes(artifactMainStat);
+    const mainStatGeneralMatch = allMainStats.includes(artifactMainStat);
 
     if (mainStatMatch) {
       score += 4;
+    } else if (mainStatGeneralMatch) {
+      score += 2;
     }
 
     let matchRating = "Weak Match";
 
-    if (matchedStats.length >= 4) matchRating = "Excellent Match";
-    else if (matchedStats.length >= 3) matchRating = "Strong Match";
-    else if (matchedStats.length >= 2) matchRating = "Possible Match";
+    if (matchedStats.length >= 4 && mainStatMatch) {
+      matchRating = "Excellent Match";
+    } else if (matchedStats.length >= 3 || mainStatMatch) {
+      matchRating = "Strong Match";
+    } else if (matchedStats.length >= 2 || mainStatGeneralMatch) {
+      matchRating = "Possible Match";
+    }
 
     characterMatch = {
       title: characterKnowledge[targetKey]?.title || targetKey,
@@ -129,6 +149,9 @@ export const inspectArtifact = ({
       matchedStats,
       missingStats,
       mainStatMatch,
+      mainStatGeneralMatch,
+      preferredMainStats: slotMainStats,
+      artifactType,
       verdict: targetCharacter.verdict,
     };
   }
@@ -139,6 +162,10 @@ export const inspectArtifact = ({
       matchRating: "Unknown Character",
       matchedStats: [],
       missingStats: [],
+      mainStatMatch: false,
+      mainStatGeneralMatch: false,
+      preferredMainStats: [],
+      artifactType,
       verdict:
         "Paimon does not have artifact preferences for this character yet. The archive is pretending this is fine.",
     };

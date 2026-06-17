@@ -1,28 +1,44 @@
 export const artifactCharacterPreferences = {
     furina: {
         wants: ["HP%", "Energy Recharge", "Crit Rate", "Crit Damage"],
-        mainStats: ["HP%", "Energy Recharge", "Hydro DMG", "Crit Rate", "Crit Damage"],
+        mainStats: {
+            Sands: ["HP%", "Energy Recharge"],
+            Goblet: ["HP%", "Hydro DMG"],
+            Circlet: ["Crit Rate", "Crit Damage"],
+        },
         verdict:
             "Furina appreciates this evidence. If it has HP, ER, or crit, the court may proceed.",
     },
 
     navia: {
         wants: ["ATK%", "Crit Rate", "Crit Damage", "Energy Recharge"],
-        mainStats: ["ATK%", "Geo DMG", "Crit Rate", "Crit Damage"],
+        mainStats: {
+            Sands: ["ATK%", "Energy Recharge"],
+            Goblet: ["Geo DMG"],
+            Circlet: ["Crit Rate", "Crit Damage"],
+        },
         verdict:
             "Navia wants crit, attack, and dramatic Geo paperwork. Anything else is suspicious.",
     },
 
     bennett: {
         wants: ["Energy Recharge", "HP%"],
-        mainStats: ["Energy Recharge", "HP%", "Healing Bonus"],
+        mainStats: {
+            Sands: ["Energy Recharge", "HP%"],
+            Goblet: ["HP%"],
+            Circlet: ["Healing Bonus", "HP%"],
+        },
         verdict:
             "Bennett mostly wants Energy Recharge and enough HP to survive being Bennett.",
     },
 
     neuvillette: {
         wants: ["HP%", "Crit Rate", "Crit Damage", "Energy Recharge"],
-        mainStats: ["HP%", "Hydro DMG", "Crit Rate", "Crit Damage"],
+        mainStats: {
+            Sands: ["HP%"],
+            Goblet: ["Hydro DMG", "HP%"],
+            Circlet: ["Crit Rate", "Crit Damage"],
+        },
         verdict:
             "Neuvillette likes HP and crit. The artifact may now be submitted to court.",
     },
@@ -538,10 +554,14 @@ export const artifactCharacterPreferences = {
     },
 
     charlotte: {
-        wants: ["ATK%", "Energy Recharge"],
-        mainStats: ["ATK%", "Cryo DMG", "Healing Bonus"],
+        wants: ["ATK%", "Energy Recharge", "Healing Bonus"],
+        mainStats: {
+            Sands: ["Energy Recharge", "ATK%"],
+            Goblet: ["ATK%", "Cryo DMG"],
+            Circlet: ["Healing Bonus", "ATK%"],
+        },
         verdict:
-            "Charlotte wants ER and enough stats to report the crime scene accurately.",
+            "Charlotte wants ER, ATK, and enough healing to keep Furina from turning the party into a medical case.",
     },
 
     freminet: {

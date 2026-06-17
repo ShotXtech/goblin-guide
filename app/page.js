@@ -271,8 +271,8 @@ export default function Home() {
 
               <h2
                 className={`text-3xl font-bold ${characterResult.rarity === 5
-                    ? "text-[#ffd59e] drop-shadow-[0_0_12px_rgba(247,231,161,0.55)]"
-                    : "text-[#dfb5ff] drop-shadow-[0_0_12px_rgba(223,181,255,0.35)]"
+                  ? "text-[#ffd59e] drop-shadow-[0_0_12px_rgba(247,231,161,0.55)]"
+                  : "text-[#dfb5ff] drop-shadow-[0_0_12px_rgba(223,181,255,0.35)]"
                   }`}
               >
                 {characterResult.title || "Character detected"}
@@ -546,8 +546,18 @@ export default function Home() {
                     </p>
 
                     <p className="mt-2 text-sm text-[#C9D3F0]/70">
-                      Main Stat: {artifactResult.artifactMainStat}
+                      Current: {artifactResult.artifactMainStat}{" "}
+                      {artifactResult.characterMatch.artifactType}
                     </p>
+
+                    {artifactResult.characterMatch.preferredMainStats?.length > 0 && (
+                      <p className="mt-2 text-sm text-[#C9D3F0]/70">
+                        Preferred for {artifactResult.characterMatch.artifactType}:{" "}
+                        <span className="text-[#F7F4EE]">
+                          {artifactResult.characterMatch.preferredMainStats.join(" / ")}
+                        </span>
+                      </p>
+                    )}
                   </div>
 
                   <div className="mt-5 grid gap-4 md:grid-cols-2">
