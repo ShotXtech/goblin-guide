@@ -2,6 +2,7 @@ export default function GoblinCard({
     children,
     className = "",
     variant = "default",
+    size = "normal",
 }) {
     const variants = {
         default: "border-[#98A8D8]/30 bg-[#0f172a]/60",
@@ -10,9 +11,14 @@ export default function GoblinCard({
         success: "border-emerald-400/20 bg-emerald-950/20",
     };
 
+    const sizes = {
+        normal: "rounded-3xl p-6",
+        compact: "rounded-2xl p-5",
+    };
+
     return (
         <div
-            className={`rounded-3xl border p-6 ${variants[variant]} ${className}`}
+            className={`border ${variants[variant]} ${sizes[size]} ${className}`}
         >
             {children}
         </div>

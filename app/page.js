@@ -2,6 +2,10 @@
 
 import GoblinButton from "../components/ui/GoblinButton";
 import GoblinCard from "../components/ui/GoblinCard";
+import GoblinInput from "../components/ui/GoblinInput";
+import GoblinTextarea from "../components/ui/GoblinTextarea";
+import GoblinSelect from "../components/ui/GoblinSelect";
+
 import { useState } from "react";
 import { goblinKnowledge } from "../data/goblinKnowledge";
 import { loreEntries } from "../data/loreEntries";
@@ -251,7 +255,7 @@ export default function Home() {
             is a responsible investment or another resin-based tragedy.
           </p>
 
-          <textarea
+          <GoblinTextarea
             value={characterInput}
             onChange={(event) => setCharacterInput(event.target.value)}
             placeholder="Example: I just got Furina. Do I build her?"
@@ -333,7 +337,7 @@ export default function Home() {
               </div>
 
               {characterResult.synergy && (
-                <div className="mt-6 rounded-2xl border border-[#98A8D8]/25 bg-[#080d22]/60 p-5">
+                <GoblinCard className="mt-6 rounded-2xl border border-[#98A8D8]/25 bg-[#080d22]/60 p-5">
                   <p className="mb-4 text-sm uppercase tracking-[0.3em] text-[#98A8D8]/70">
                     Works Well With
                   </p>
@@ -348,12 +352,12 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </GoblinCard>
               )}
 
-              <div className="mt-6 rounded-2xl border border-[#F4A59E]/30 bg-[#241a28]/60 p-5">
+              <GoblinCard variant="warm" className="mt-6 rounded-2xl p-5">
                 <p className="text-[#F7D8D2]">{characterResult.paimon}</p>
-              </div>
+              </GoblinCard>
             </GoblinCard>
           )}
         </section>
@@ -681,7 +685,7 @@ export default function Home() {
               </p>
 
               <div className="relative">
-                <select
+                <GoblinSelect
                   value={artifactType}
                   onChange={(e) => {
                     const nextType = e.target.value;
@@ -693,7 +697,7 @@ export default function Home() {
                   {artifactTypes.map((type) => (
                     <option key={type}>{type}</option>
                   ))}
-                </select>
+                </GoblinSelect>
 
                 <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#F4A59E]/70">
                   ▼
@@ -1248,15 +1252,14 @@ export default function Home() {
           </div>
 
           <div className="mt-6 flex gap-3">
-            <input
-              type="text"
+            <GoblinInput
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") sendMessage();
               }}
               placeholder="Tell Paimon about the catastrophe..."
-              className="flex-1 rounded-xl bg-slate-800 px-4 py-3 text-white"
+              className="flex-1"
             />
 
             <button
