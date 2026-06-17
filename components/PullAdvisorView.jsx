@@ -54,7 +54,7 @@ export default function PullAdvisorView() {
 
             <section className="relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col justify-center">
                 <Link
-                    href="/"
+                    href="/home"
                     className="mb-8 w-fit rounded-xl border border-white/20 px-4 py-2 text-sm text-[#C9D3F0]/80 hover:bg-white/10"
                 >
                     ← Back to catastrophes

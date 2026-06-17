@@ -62,7 +62,7 @@ export default function CharacterHelpView() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
 
             <section className="relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col justify-center">
-                <Link href="/">
+                <Link href="/home">
                     <GoblinButton className="mb-8 w-fit rounded-xl px-4 py-2">
                         ← Back to catastrophes
                     </GoblinButton>

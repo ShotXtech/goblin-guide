@@ -69,8 +69,8 @@ export default function LoreView() {
 
                     <article
                         className={`relative w-full overflow-hidden rounded-[2rem] border bg-[#080d22]/85 p-6 shadow-[0_0_45px_rgba(244,165,158,0.22)] backdrop-blur ${isClassified
-                                ? "border-slate-500/50"
-                                : "border-[#F4A59E]/60"
+                            ? "border-slate-500/50"
+                            : "border-[#F4A59E]/60"
                             }`}
                     >
                         {lore.image && (
@@ -242,7 +242,7 @@ export default function LoreView() {
 
             <section className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col justify-center">
                 <Link
-                    href="/"
+                    href="/home"
                     className="mb-8 w-fit rounded-xl border border-white/20 px-4 py-2 text-sm text-[#C9D3F0]/80 hover:bg-white/10"
                 >
                     ← Back to catastrophes
