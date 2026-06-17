@@ -197,6 +197,7 @@ export default function Home() {
                 "🎒 New character help": "/character-help",
                 "⚔️ Artifact inspection": "/artifact-inspection",
                 "🎰 Should I pull?": "/pull-advisor",
+                "📚 Explain lore": "/lore",
               };
 
               const route = routeMap[question.label];
