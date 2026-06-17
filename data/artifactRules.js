@@ -80,14 +80,6 @@ export const inspectArtifact = ({
     }
   });
 
-  let rating = "F";
-
-  if (score >= 10) rating = "S";
-  else if (score >= 8) rating = "A";
-  else if (score >= 6) rating = "B";
-  else if (score >= 4) rating = "C";
-  else if (score >= 2) rating = "D";
-
   const targetKey = artifactTargetCharacter?.trim().toLowerCase();
   const targetCharacter = targetKey
     ? artifactCharacterPreferences[targetKey]
@@ -170,6 +162,14 @@ export const inspectArtifact = ({
         "Paimon does not have artifact preferences for this character yet. The archive is pretending this is fine.",
     };
   }
+
+  let rating = "F";
+
+  if (score >= 10) rating = "S";
+  else if (score >= 8) rating = "A";
+  else if (score >= 6) rating = "B";
+  else if (score >= 4) rating = "C";
+  else if (score >= 2) rating = "D";
 
   return {
     artifactType,
