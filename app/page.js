@@ -6,6 +6,8 @@ import GoblinInput from "../components/ui/GoblinInput";
 import GoblinTextarea from "../components/ui/GoblinTextarea";
 import GoblinSelect from "../components/ui/GoblinSelect";
 
+import Link from "next/link";
+
 import { useState } from "react";
 import { goblinKnowledge } from "../data/goblinKnowledge";
 import { loreEntries } from "../data/loreEntries";
@@ -190,26 +192,36 @@ export default function Home() {
           </div>
 
           <div className="mt-12 grid w-full max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
-            {questions.map((question) => (
-              <button
-                key={question.label}
-                onClick={() => {
-                  setActiveSection(question);
-                  setScreen("section");
-                }}
-                className="group min-h-36 rounded-3xl border border-[#98A8D8]/30 bg-[#0f172a]/50 p-6 text-left shadow-[0_0_30px_rgba(5,8,22,0.35)] backdrop-blur transition hover:-translate-y-1 hover:border-[#F4A59E]/70 hover:bg-[#1b2450]/60"
-              >
-                <div className="text-3xl">{question.label.split(" ")[0]}</div>
+            {questions.map((question) => {
+              const isCharacterHelp = question.label === "🎒 New character help";
+              const CardWrapper = isCharacterHelp ? Link : "button";
 
-                <div className="mt-5 text-lg font-bold text-[#F7F4EE]">
-                  {question.label.replace(question.label.split(" ")[0], "")}
-                </div>
+              return (
+                <CardWrapper
+                  key={question.label}
+                  href={isCharacterHelp ? "/character-help" : undefined}
+                  onClick={
+                    isCharacterHelp
+                      ? undefined
+                      : () => {
+                        setActiveSection(question);
+                        setScreen("section");
+                      }
+                  }
+                  className="group min-h-36 rounded-3xl border border-[#98A8D8]/30 bg-[#0f172a]/50 p-6 text-left shadow-[0_0_30px_rgba(5,8,22,0.35)] backdrop-blur transition hover:-translate-y-1 hover:border-[#F4A59E]/70 hover:bg-[#1b2450]/60"
+                >
+                  <div className="text-3xl">{question.label.split(" ")[0]}</div>
 
-                <p className="mt-3 text-sm leading-6 text-[#C9D3F0]/70">
-                  {question.answer}
-                </p>
-              </button>
-            ))}
+                  <div className="mt-5 text-lg font-bold text-[#F7F4EE]">
+                    {question.label.replace(question.label.split(" ")[0], "")}
+                  </div>
+
+                  <p className="mt-3 text-sm leading-6 text-[#C9D3F0]/70">
+                    {question.answer}
+                  </p>
+                </CardWrapper>
+              );
+            })}
           </div>
 
           <button
