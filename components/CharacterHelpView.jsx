@@ -84,15 +84,21 @@ export default function CharacterHelpView() {
                 <GoblinTextarea
                     value={characterInput}
                     onChange={(event) => setCharacterInput(event.target.value)}
+                    onKeyDown={(event) => {
+                        if (event.key === "Enter" && !event.shiftKey) {
+                            event.preventDefault();
+                            analyzeCharacter();
+                        }
+                    }}
                     placeholder="Example: I just got Furina. Do I build her?"
                     className="mt-8 min-h-32"
                 />
 
                 <GoblinButton
                     onClick={analyzeCharacter}
-                    className="mt-4 w-fit rounded-2xl bg-[#F4A59E] px-6 py-4 font-bold text-[#050816]"
+                    className="mt-5 w-full rounded-3xl border border-[#F4A59E]/40 bg-[#4C548F]/50 px-8 py-5 text-lg font-bold text-[#F7F4EE] shadow-[0_0_30px_rgba(152,168,216,0.18)] transition hover:-translate-y-1 hover:bg-[#4C548F]/70"
                 >
-                    Ask Paimon for questionable guidance
+                    ✦ Ask Paimon for questionable guidance ✦
                 </GoblinButton>
 
                 {characterResult && (

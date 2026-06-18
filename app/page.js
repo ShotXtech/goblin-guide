@@ -7,79 +7,16 @@ import GoblinTextarea from "../components/ui/GoblinTextarea";
 import GoblinSelect from "../components/ui/GoblinSelect";
 
 import Link from "next/link";
-
 import { useState } from "react";
+
 import { goblinKnowledge } from "../data/goblinKnowledge";
-import { loreEntries } from "../data/loreEntries";
-import { characterKnowledge } from "../data/characterKnowledge";
-import { characterMetadata } from "../data/characterMetadata";
 import { questions } from "../data/questions";
-import { elementIcons, weaponIcons, regionIcons, elementStyles, } from "../data/characterDisplay";
-import { archiveQuotes } from "../data/archiveLoreQuotes.js";
-import { inspectArtifact } from "../data/artifactRules";
 
 export default function Home() {
   const [screen, setScreen] = useState("landing");
   const [activeSection, setActiveSection] = useState(null);
   const [userInput, setUserInput] = useState("");
   const [messages, setMessages] = useState([]);
-  const [artifactResult, setArtifactResult] = useState("");
-  const [characterResult, setCharacterResult] = useState(null);
-  const [characterInput, setCharacterInput] = useState("");
-  const [pullInput, setPullInput] = useState("");
-  const [pullResult, setPullResult] = useState("");
-  const [selectedLore, setSelectedLore] = useState(null);
-  const [artifactType, setArtifactType] = useState("Flower");
-  const [artifactLevel, setArtifactLevel] = useState("0");
-  const [artifactMainStat, setArtifactMainStat] = useState("HP");
-  const [artifactSubstats, setArtifactSubstats] = useState([
-    { stat: "Crit Rate", value: "" },
-    { stat: "Crit Damage", value: "" },
-    { stat: "Energy Recharge", value: "" },
-    { stat: "ATK%", value: "" },
-  ]);
-  const [artifactTargetCharacter, setArtifactTargetCharacter] = useState("");
-  const [artifactResultOpen, setArtifactResultOpen] = useState(false);
-
-  const archiveQuote =
-    archiveQuotes[Math.floor(Math.random() * archiveQuotes.length)];
-
-  const analyzeCharacter = () => {
-    const input = characterInput.toLowerCase();
-
-    if (!characterInput.trim()) {
-      setCharacterResult({
-        title: "No character detected",
-        role: "Unknown",
-        priority: "Snacks first",
-        recommendation: "Please provide the name of the adopted disaster.",
-        paimon:
-          "Paimon is staring at an empty adoption form. This is not how character help works.",
-      });
-      return;
-    }
-
-    const foundKey = Object.keys(characterKnowledge).find((key) =>
-      input.includes(key)
-    );
-
-    if (foundKey) {
-      setCharacterResult({
-        ...characterKnowledge[foundKey],
-        ...characterMetadata[foundKey],
-      });
-      return;
-    }
-
-    setCharacterResult({
-      title: "Unknown character",
-      role: "Under investigation",
-      priority: "Ask Paimon again later",
-      recommendation: "Proceed carefully.",
-      paimon:
-        "Paimon does not recognize this character yet. Either they are new, suspicious, or you typed with goblin energy.",
-    });
-  };
 
   const sendMessage = () => {
     if (!userInput.trim()) return;
