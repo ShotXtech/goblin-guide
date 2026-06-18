@@ -18,7 +18,7 @@ export default function GoblinCard({
 
     return (
         <div
-            className={`border ${variants[variant]} ${sizes[size]} ${className}`}
+            className={`border ${variants[variant] || variants.default} ${sizes[size] || sizes.normal} ${className}`}
         >
             {children}
         </div>
