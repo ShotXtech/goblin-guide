@@ -95,8 +95,9 @@ export default function CharacterHelpView() {
                 />
 
                 <GoblinButton
+                    variant="cta"
                     onClick={analyzeCharacter}
-                    className="mt-5 w-full rounded-3xl border border-[#F4A59E]/40 bg-[#4C548F]/50 px-8 py-5 text-lg font-bold text-[#F7F4EE] shadow-[0_0_30px_rgba(152,168,216,0.18)] transition hover:-translate-y-1 hover:bg-[#4C548F]/70"
+                    className="mt-5 w-full"
                 >
                     ✦ Ask Paimon for questionable guidance ✦
                 </GoblinButton>
