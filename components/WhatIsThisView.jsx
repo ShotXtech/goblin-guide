@@ -15,6 +15,26 @@ export default function WhatIsThisView() {
     const [itemCategory, setItemCategory] = useState("I don't know");
     const [canUse, setCanUse] = useState("I don't know");
     const [hasLock, setHasLock] = useState("I don't know");
+    const [investigationResult, setInvestigationResult] = useState(null);
+
+    const investigateItem = () => {
+        if (!itemName.trim()) {
+            setInvestigationResult({
+                status: "Evidence Missing",
+                type: "Unknown",
+                notes:
+                    "Paimon is staring at an empty evidence bag. Please provide the suspicious object.",
+            });
+            return;
+        }
+
+        setInvestigationResult({
+            status: "Under Investigation",
+            type: itemCategory,
+            notes:
+                "This object appears suspicious. Further goblin research is required.",
+        });
+    };
 
     return (
         <main className="relative min-h-screen overflow-hidden bg-[#050816] p-8 text-[#F7F4EE]">
@@ -142,10 +162,40 @@ export default function WhatIsThisView() {
                         </label>
                     </div>
 
-                    <GoblinButton variant="hero" className="w-full">
+                    <GoblinButton
+                        variant="hero"
+                        className="w-full"
+                        onClick={investigateItem}
+                    >
                         ✦ Ask Paimon to investigate ✦
                     </GoblinButton>
                 </GoblinCard>
+                {investigationResult && (
+                    <GoblinCard className="mt-6">
+                        <p className="mb-3 text-sm uppercase tracking-[0.3em] text-[#98A8D8]/70">
+                            Investigation Result
+                        </p>
+
+                        <div className="space-y-4">
+                            <div>
+                                <p className="text-sm text-[#C9D3F0]/60">Status</p>
+                                <p className="font-bold">{investigationResult.status}</p>
+                            </div>
+
+                            <div>
+                                <p className="text-sm text-[#C9D3F0]/60">Likely Type</p>
+                                <p className="font-bold">{investigationResult.type}</p>
+                            </div>
+
+                            <div>
+                                <p className="text-sm text-[#C9D3F0]/60">Paimon's Notes</p>
+                                <p className="text-[#C9D3F0]">
+                                    {investigationResult.notes}
+                                </p>
+                            </div>
+                        </div>
+                    </GoblinCard>
+                )}
             </section>
         </main>
     );
