@@ -35,6 +35,7 @@ export default function HomePage({ onReturnToLanding, onOpenSection, onOpenChat 
                 <div className="mt-12 grid w-full max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
                     {questions.map((question) => {
                         const routeMap = {
+                            "🪨 What is this thing?": "/what-is-this",
                             "🎒 New character help": "/character-help",
                             "⚔️ Artifact inspection": "/artifact-inspection",
                             "🎰 Should I pull?": "/pull-advisor",
