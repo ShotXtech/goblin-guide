@@ -6,6 +6,7 @@ import { useState } from "react";
 import GoblinSelect from "./ui/GoblinSelect";
 import { characterKnowledge } from "../data/characterKnowledge";
 import { inspectArtifact } from "../data/artifactRules";
+import GoblinButton from "./ui/GoblinButton";
 
 export default function ArtifactInspectionView() {
     const artifactTypes = ["Flower", "Feather", "Sands", "Goblet", "Circlet"];
@@ -466,12 +467,13 @@ export default function ArtifactInspectionView() {
                     </div>
                 </div>
 
-                <button
+                <GoblinButton
+                    variant="hero"
                     onClick={analyzeArtifact}
-                    className="mt-5 rounded-3xl border border-[#F4A59E]/40 bg-[#4C548F]/50 px-8 py-4 font-bold text-[#F7F4EE] shadow-[0_0_30px_rgba(152,168,216,0.18)] transition hover:-translate-y-1 hover:bg-[#4C548F]/70"
+                    className="mt-5 w-full"
                 >
                     Ask Paimon for legal evaluation
-                </button>
+                </GoblinButton>
             </section>
         </main>
     );

@@ -96,7 +96,7 @@ export default function PullAdvisorView() {
                 />
 
                 <GoblinButton
-                    variant="primary"
+                    variant="hero"
                     onClick={analyzePull}
                     className="mt-4 w-full rounded-2xl px-6 py-4 font-bold"
                 >

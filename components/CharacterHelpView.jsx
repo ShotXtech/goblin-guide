@@ -95,7 +95,7 @@ export default function CharacterHelpView() {
                 />
 
                 <GoblinButton
-                    variant="cta"
+                    variant="hero"
                     onClick={analyzeCharacter}
                     className="mt-5 w-full"
                 >
