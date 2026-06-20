@@ -8,6 +8,9 @@ import GoblinSelect from "./ui/GoblinSelect";
 import GoblinButton from "./ui/GoblinButton";
 import GoblinCard from "./ui/GoblinCard";
 
+import { itemKnowledge } from "@/data/itemKnowledge";
+import { itemDatabase } from "../data/itemDatabase";
+
 export default function WhatIsThisView() {
     const [itemName, setItemName] = useState("");
     const [itemSource, setItemSource] = useState("I don't remember");
@@ -16,24 +19,58 @@ export default function WhatIsThisView() {
     const [canUse, setCanUse] = useState("I don't know");
     const [hasLock, setHasLock] = useState("I don't know");
     const [investigationResult, setInvestigationResult] = useState(null);
+    const [possibleMatches, setPossibleMatches] = useState([]);
 
     const investigateItem = () => {
+        const input = itemName.toLowerCase();
+
         if (!itemName.trim()) {
             setInvestigationResult({
                 status: "Evidence Missing",
                 type: "Unknown",
+                safety: "Unknown",
                 notes:
                     "Paimon is staring at an empty evidence bag. Please provide the suspicious object.",
             });
             return;
         }
 
+        const foundKey = Object.keys(itemKnowledge).find((key) =>
+            input.includes(key)
+        );
+
+        if (foundKey) {
+            setInvestigationResult(itemKnowledge[foundKey]);
+            return;
+        }
+
         setInvestigationResult({
             status: "Under Investigation",
             type: itemCategory,
+            safety: hasLock === "Yes" ? "Probably important" : "Unknown",
             notes:
-                "This object appears suspicious. Further goblin research is required.",
+                "This object appears suspicious. Further goblin research is required. Paimon recommends not deleting it until someone more responsible has checked the evidence.",
         });
+    };
+
+    const searchSuspiciousObjects = () => {
+        const results = itemDatabase.filter((item) => {
+            const nameMatch =
+                !itemName.trim() ||
+                item.name.toLowerCase().includes(itemName.toLowerCase());
+
+            const sourceMatch =
+                itemSource === "I don't remember" || item.source === itemSource;
+
+            const rarityMatch = itemRarity === "Any" || item.rarity === itemRarity;
+
+            const categoryMatch =
+                itemCategory === "I don't know" || item.category === itemCategory;
+
+            return nameMatch && sourceMatch && rarityMatch && categoryMatch;
+        });
+
+        setPossibleMatches(results);
     };
 
     return (
@@ -165,11 +202,40 @@ export default function WhatIsThisView() {
                     <GoblinButton
                         variant="hero"
                         className="w-full"
-                        onClick={investigateItem}
+                        onClick={searchSuspiciousObjects}
                     >
-                        ✦ Ask Paimon to investigate ✦
+                        ✦ Search suspicious objects ✦
                     </GoblinButton>
                 </GoblinCard>
+
+
+                {possibleMatches.length > 0 && (
+                    <GoblinCard className="mt-6">
+                        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-[#98A8D8]/70">
+                            Possible Matches
+                        </p>
+
+                        <div className="grid gap-3 md:grid-cols-2">
+                            {possibleMatches.map((item) => (
+                                <div
+                                    key={item.id}
+                                    className="rounded-2xl border border-[#98A8D8]/20 bg-[#080d22]/60 p-4"
+                                >
+                                    <p className="font-bold">{item.name}</p>
+
+                                    <p className="mt-2 text-sm text-[#C9D3F0]/70">
+                                        {item.category}
+                                    </p>
+
+                                    <p className="mt-1 text-sm text-[#C9D3F0]/50">
+                                        {item.rarity}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </GoblinCard>
+                )}
+
                 {investigationResult && (
                     <GoblinCard className="mt-6">
                         <p className="mb-3 text-sm uppercase tracking-[0.3em] text-[#98A8D8]/70">
@@ -185,6 +251,11 @@ export default function WhatIsThisView() {
                             <div>
                                 <p className="text-sm text-[#C9D3F0]/60">Likely Type</p>
                                 <p className="font-bold">{investigationResult.type}</p>
+                            </div>
+
+                            <div>
+                                <p className="text-sm text-[#C9D3F0]/60">Safety</p>
+                                <p className="font-bold">{investigationResult.safety}</p>
                             </div>
 
                             <div>
