@@ -20,6 +20,7 @@ export default function WhatIsThisView() {
     const [hasLock, setHasLock] = useState("I don't know");
     const [investigationResult, setInvestigationResult] = useState(null);
     const [possibleMatches, setPossibleMatches] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(null);
 
     const investigateItem = () => {
         const input = itemName.toLowerCase();
@@ -219,7 +220,8 @@ export default function WhatIsThisView() {
                             {possibleMatches.map((item) => (
                                 <div
                                     key={item.id}
-                                    className="rounded-2xl border border-[#98A8D8]/20 bg-[#080d22]/60 p-4"
+                                    onClick={() => setSelectedItem(item)}
+                                    className="cursor-pointer rounded-2xl border border-[#98A8D8]/20 bg-[#080d22]/60 p-4 transition hover:border-[#F4A59E]/50 hover:bg-[#101731]"
                                 >
                                     <p className="font-bold">{item.name}</p>
 
@@ -233,6 +235,40 @@ export default function WhatIsThisView() {
                                 </div>
                             ))}
                         </div>
+                    </GoblinCard>
+                )}
+
+                {selectedItem && (
+                    <GoblinCard className="mt-6">
+                        <p className="mb-3 text-sm uppercase tracking-[0.3em] text-[#98A8D8]/70">
+                            Goblin Investigation Report
+                        </p>
+
+                        <h3 className="text-2xl font-bold">{selectedItem.name}</h3>
+
+                        <div className="mt-4 grid gap-4 md:grid-cols-3">
+                            <div>
+                                <p className="text-sm text-[#C9D3F0]/60">Category</p>
+                                <p>{selectedItem.category}</p>
+                            </div>
+
+                            <div>
+                                <p className="text-sm text-[#C9D3F0]/60">Rarity</p>
+                                <p>{selectedItem.rarity}</p>
+                            </div>
+
+                            <div>
+                                <p className="text-sm text-[#C9D3F0]/60">Source</p>
+                                <p>{selectedItem.source}</p>
+                            </div>
+                        </div>
+
+                        <GoblinCard variant="warm" className="mt-6">
+                            <p>
+                                Paimon has identified the object. Further goblin documentation is
+                                pending.
+                            </p>
+                        </GoblinCard>
                     </GoblinCard>
                 )}
 
