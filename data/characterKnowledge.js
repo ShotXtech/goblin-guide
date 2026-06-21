@@ -10,6 +10,8 @@ export const characterKnowledge = {
       "Neuvillette — Hydro royalty nonsense. Extremely effective.",
       "Navia — buffs Navia's cannon crimes.",
     ],
+    pullEvaluation:
+      "One of the strongest account upgrades available. Excellent pull priority for most players.",
     paimon: "Congratulations. You accidentally made a good decision.",
   },
 
@@ -24,6 +26,8 @@ export const characterKnowledge = {
       "Furina — buffs the cannon. Paimon fears the cannon.",
       "Albedo — produces Geo crumbs for Navia's crystal economy.",
     ],
+    pullEvaluation:
+      "Excellent account value. Strong damage, easy gearing, and useful even without premium supports.",
     paimon:
       "Navia detected. Please confirm your artifacts are not committing crimes.",
   },
@@ -39,6 +43,8 @@ export const characterKnowledge = {
       "Diluc — classic Pyro unga bunga support package.",
       "Xiangling — the National Team goblin engine.",
     ],
+    pullEvaluation:
+      "Extremely powerful support, but never spend large amounts of wishes chasing a specific four-star.",
     paimon: "Bennett remains the answer to most life problems.",
   },
 
@@ -68,6 +74,8 @@ export const characterKnowledge = {
       "Arlecchino — interruption resistance and parental supervision.",
       "Literally anyone — Zhongli continues to solve game mechanics with architecture.",
     ],
+    pullEvaluation:
+      "One of the safest pulls in the game. Provides unmatched comfort and works on almost any account.",
     paimon:
       "Zhongli detected. Dodging has been successfully outsourced.",
   },
@@ -83,6 +91,8 @@ export const characterKnowledge = {
       "Bennett — ATK buff, healing, and the ancient circle of power.",
       "Yelan — fast rotations and expensive-looking Electro-Hydro violence.",
     ],
+    pullEvaluation:
+      "Versatile and powerful. Fits many teams and remains valuable long-term.",
     paimon:
       "Raiden detected. The national energy crisis has been solved.",
   },
@@ -1690,6 +1700,8 @@ export const characterKnowledge = {
       "Furina — damage buff plus dramatic HP paperwork.",
       "Charlotte — healing support when abyss training becomes a medical issue.",
     ],
+    pullEvaluation:
+      "Very high damage potential, but requires significant investment compared to universal supports.",
     paimon:
       "Skirk detected. Abyss training arc has entered the room and everyone is nervous.",
   },
