@@ -225,7 +225,10 @@ export default function WhatIsThisView() {
                                 <div
                                     key={item.id}
                                     onClick={() => setSelectedItem(item)}
-                                    className="cursor-pointer rounded-2xl border border-[#98A8D8]/20 bg-[#080d22]/60 p-4 transition hover:border-[#F4A59E]/50 hover:bg-[#101731]"
+                                    className={`cursor-pointer rounded-2xl border p-4 transition ${selectedItem?.id === item.id
+                                        ? "border-[#F4A59E]/70 bg-[#241a28]/70 shadow-[0_0_25px_rgba(244,165,158,0.16)]"
+                                        : "border-[#98A8D8]/20 bg-[#080d22]/60 hover:border-[#F4A59E]/50 hover:bg-[#101731]"
+                                        }`}
                                 >
                                     <p className="font-bold">{item.name}</p>
 
@@ -271,6 +274,11 @@ export default function WhatIsThisView() {
                             <div>
                                 <p className="text-sm text-[#C9D3F0]/60">Category</p>
                                 <p>{selectedItem.category}</p>
+                            </div>
+
+                            <div>
+                                <p className="text-sm text-[#C9D3F0]/60">Type</p>
+                                <p>{selectedItem.type}</p>
                             </div>
 
                             <div>

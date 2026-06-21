@@ -34,7 +34,7 @@ export const itemDatabase = [
         category: "Currency",
         source: "Open world",
         status: "Known Object",
-        type: "Regional Currency / Offering Item",
+        type: "Regional Offering Currency",
         safety: "Do not delete",
         notes:
             "This looks like a regional sigil. Paimon recommends offering it to the correct tree, fountain, stone, shrine, suspicious authority figure, or emotionally unavailable landmark.",
@@ -77,7 +77,7 @@ export const itemDatabase = [
         rarity: "Gold",
         category: "Currency",
         source: "Shop",
-
+        type: "Limited Banner Wish",
         status: "Known Object",
 
         safety: "Spend Responsibly",
@@ -96,7 +96,7 @@ export const itemDatabase = [
         rarity: "Blue",
         category: "Currency",
         source: "Shop",
-
+        type: "Standard Banner Wish",
         status: "Known Object",
 
         safety: "Safe To Spend",
@@ -115,7 +115,7 @@ export const itemDatabase = [
         rarity: "Purple",
         category: "Material",
         source: "Boss",
-
+        type: "Weekly Boss Conversion Material",
         status: "Known Object",
 
         safety: "Keep",
@@ -134,7 +134,7 @@ export const itemDatabase = [
         rarity: "Purple",
         category: "Weapon Material",
         source: "Boss",
-
+        type: "Crafting Blueprint Material",
         status: "Known Object",
 
         safety: "Very Valuable",
@@ -153,7 +153,7 @@ export const itemDatabase = [
         rarity: "Purple",
         category: "Gadget",
         source: "Quest",
-
+        type: "Utility Gadget",
         status: "Known Object",
 
         safety: "Use Weekly",
@@ -165,23 +165,142 @@ export const itemDatabase = [
     },
 
     {
-        id: "parametric-transformer",
+        id: "dark-iron-sword",
 
-        name: "Parametric Transformer",
+        name: "Dark Iron Sword",
 
-        rarity: "Purple",
-        category: "Gadget",
+        rarity: "Blue",
+        category: "Weapon",
+
         source: "Quest",
+        type: "Legendary Goblin Artifact",
+        status: "One of a kind!",
 
-        status: "Known Object",
-
-        safety: "Use Weekly",
+        safety: "DO NOT FEED",
 
         notes:
-            "Parametric Transformer detected. Most travelers forget this exists for several months at a time.",
+            "Dark Iron Sword detected. One of the rarest inventory accidents in Teyvat. Paimon recommends protecting it from enhancement menus.",
 
         image: null,
     },
 
+    {
+        id: "mystic-enhancement-ore",
 
+        name: "Mystic Enhancement Ore",
+
+        rarity: "Blue",
+        category: "Weapon Material",
+        type: "Weapon Experience Material",
+        source: "Open world",
+
+        status: "Known Object",
+
+        safety: "Safe To Spend",
+
+        notes:
+            "Mystic Enhancement Ore detected. This is weapon food. Please feed it to weapons, not to your anxiety.",
+
+        image: null,
+    },
+
+    {
+        id: "sanctifying-unction",
+
+        name: "Sanctifying Unction",
+
+        rarity: "Purple",
+        category: "Material",
+        type: "Artifact Experience Material",
+        source: "Shop",
+
+        status: "Known Object",
+
+        safety: "Use On Artifacts",
+
+        notes:
+            "Sanctifying Unction detected. This is artifact seasoning. Paimon recommends using it on pieces that have not committed crimes.",
+
+        image: null,
+    },
+
+    {
+        id: "sanctifying-essence",
+
+        name: "Sanctifying Essence",
+
+        rarity: "Gold",
+        category: "Material",
+        type: "Premium Artifact Experience Material",
+        source: "Shop",
+
+        status: "Known Object",
+
+        safety: "Use Carefully",
+
+        notes:
+            "Sanctifying Essence detected. Expensive artifact food. Do not waste it on flat DEF unless you enjoy suffering professionally.",
+
+        image: null,
+    },
+
+    {
+        id: "transient-resin",
+
+        name: "Transient Resin",
+
+        rarity: "Purple",
+        category: "Material",
+        type: "Temporary Resin Resource",
+        source: "Shop",
+
+        status: "Known Object",
+
+        safety: "Expires Soon",
+
+        notes:
+            "Transient Resin detected. This is temporary resin with commitment issues. Use it before it vanishes dramatically.",
+
+        image: null,
+    },
+
+    {
+        id: "dust-of-azoth",
+
+        name: "Dust of Azoth",
+
+        rarity: "Blue",
+        category: "Material",
+        type: "Elemental Gem Conversion Material",
+        source: "Shop",
+
+        status: "Known Object",
+
+        safety: "Safe To Use",
+
+        notes:
+            "Dust of Azoth detected. This converts elemental gems because even rocks in Teyvat require paperwork.",
+
+        image: null,
+    },
+
+    {
+        id: "casket-of-tomes",
+
+        name: "Casket of Tomes",
+
+        rarity: "Purple",
+        category: "Talent Material",
+        type: "Talent Book Selection Box",
+        source: "Event",
+
+        status: "Known Object",
+
+        safety: "Open When Needed",
+
+        notes:
+            "Casket of Tomes detected. It contains talent books. Paimon recommends opening it only after deciding which character is emotionally worth the investment.",
+
+        image: null,
+    },
 ];
