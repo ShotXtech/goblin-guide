@@ -20,6 +20,7 @@ export default function PullAdvisorView() {
     const [primogems, setPrimogems] = useState("");
     const [pity, setPity] = useState("");
     const [guaranteed, setGuaranteed] = useState("No");
+    const [bannerType, setBannerType] = useState("Character");
 
     const pullTargets = Object.entries(characterMetadata).map(
         ([key, metadata]) => ({
@@ -60,12 +61,24 @@ export default function PullAdvisorView() {
         const effectivePulls = totalPulls + currentPity;
 
         let verdict = "";
+        let recommendation = "";
+
         if (guaranteed === "Yes" && effectivePulls >= 90) {
-            verdict = "🟢 Financially Responsible Goblin";
+            verdict = "🟢 Guaranteed Character";
+            recommendation =
+                "Paimon has reviewed the evidence. The target character is effectively secured.";
+        } else if (guaranteed === "No" && effectivePulls >= 90) {
+            verdict = "🟠 Likely 5★, Target Not Guaranteed";
+            recommendation =
+                "You should reach a five-star, but the 50/50 remains an active threat.";
         } else if (effectivePulls >= 75) {
-            verdict = "🟡 Controlled Emotional Damage";
+            verdict = "🟡 Good Chance";
+            recommendation =
+                "You are approaching soft pity. Success is possible. Emotional damage remains possible too.";
         } else {
             verdict = "🔴 Certified Primogem Crime";
+            recommendation =
+                "Paimon recommends saving primogems before committing further financial mistakes.";
         }
 
         if (!selectedTarget) {
@@ -100,6 +113,8 @@ export default function PullAdvisorView() {
 
             Available Pulls: ${totalPulls}
 
+            Banner Type: ${bannerType}
+
             Current Pity: ${currentPity}
 
             Distance To Soft Pity: ${distanceToSoftPity}
@@ -107,6 +122,8 @@ export default function PullAdvisorView() {
             Distance To Hard Pity: ${distanceToHardPity}
 
             Guaranteed: ${guaranteed}
+
+            Paimon's Recommendation: ${recommendation}
             `);
     };
 
@@ -142,7 +159,7 @@ export default function PullAdvisorView() {
                 </p>
 
                 <GoblinCard className="mt-8 space-y-5 bg-[#0f172a]/70">
-                    <div className="grid gap-5 md:grid-cols-2">
+                    <div className="grid gap-5 md:grid-cols-3">
                         <label className="block">
                             <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
                                 Rarity
@@ -183,6 +200,25 @@ export default function PullAdvisorView() {
                                 <option>Dendro</option>
                                 <option>Anemo</option>
                                 <option>Geo</option>
+                            </GoblinSelect>
+                        </label>
+
+                        <label className="block">
+                            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
+                                Banner Type
+                            </p>
+
+                            <GoblinSelect
+                                value={bannerType}
+                                onChange={(event) => {
+                                    setBannerType(event.target.value);
+                                    setPullResult("");
+                                }}
+                            >
+                                <option>Character Banner</option>
+                                <option>Weapon Banner</option>
+                                <option>Standard Banner</option>
+                                <option>Chronicled Wish</option>
                             </GoblinSelect>
                         </label>
                     </div>
