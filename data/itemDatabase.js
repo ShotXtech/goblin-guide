@@ -68,4 +68,120 @@ export const itemDatabase = [
             "Resin detected. This is the premium liquid form of regret. Spend it on domains, bosses, or whatever Paimon judges least embarrassing today.",
         image: null
     },
+
+    {
+        id: "intertwined-fate",
+
+        name: "Intertwined Fate",
+
+        rarity: "Gold",
+        category: "Currency",
+        source: "Shop",
+
+        status: "Known Object",
+
+        safety: "Spend Responsibly",
+
+        notes:
+            "Intertwined Fate detected. This object has a direct conversion rate to emotional damage.",
+
+        image: null,
+    }
+
+    {
+        id: "acquaint-fate",
+
+        name: "Acquaint Fate",
+
+        rarity: "Blue",
+        category: "Currency",
+        source: "Shop",
+
+        status: "Known Object",
+
+        safety: "Safe To Spend",
+
+        notes:
+            "Acquaint Fate detected. Paimon approves. Nobody plans around the standard banner anyway.",
+
+        image: null,
+    }
+
+{
+        id: "dream-solvent",
+
+        name: "Dream Solvent",
+
+        rarity: "Purple",
+        category: "Material",
+        source: "Boss",
+
+        status: "Known Object",
+
+        safety: "Keep",
+
+        notes:
+            "Dream Solvent detected. This substance converts one boss regret into another boss regret.",
+
+        image: null,
+    }
+
+{
+        id: "northlander-billet",
+
+        name: "Northlander Billet",
+
+        rarity: "Purple",
+        category: "Weapon Material",
+        source: "Boss",
+
+        status: "Known Object",
+
+        safety: "Very Valuable",
+
+        notes:
+            "Northlander Billet detected. Paimon recommends avoiding panic crafting until you know what weapon you actually want.",
+
+        image: null,
+    }
+
+{
+        id: "parametric-transformer",
+
+        name: "Parametric Transformer",
+
+        rarity: "Purple",
+        category: "Gadget",
+        source: "Quest",
+
+        status: "Known Object",
+
+        safety: "Use Weekly",
+
+        notes:
+            "Parametric Transformer detected. Most travelers forget this exists for several months at a time.",
+
+        image: null,
+    }
+
+{
+        id: "parametric-transformer",
+
+        name: "Parametric Transformer",
+
+        rarity: "Purple",
+        category: "Gadget",
+        source: "Quest",
+
+        status: "Known Object",
+
+        safety: "Use Weekly",
+
+        notes:
+            "Parametric Transformer detected. Most travelers forget this exists for several months at a time.",
+
+        image: null,
+    }
+
+
 ];
