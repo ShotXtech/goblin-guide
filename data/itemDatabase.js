@@ -86,7 +86,7 @@ export const itemDatabase = [
             "Intertwined Fate detected. This object has a direct conversion rate to emotional damage.",
 
         image: null,
-    }
+    },
 
     {
         id: "acquaint-fate",
@@ -105,9 +105,9 @@ export const itemDatabase = [
             "Acquaint Fate detected. Paimon approves. Nobody plans around the standard banner anyway.",
 
         image: null,
-    }
+    },
 
-{
+    {
         id: "dream-solvent",
 
         name: "Dream Solvent",
@@ -124,9 +124,9 @@ export const itemDatabase = [
             "Dream Solvent detected. This substance converts one boss regret into another boss regret.",
 
         image: null,
-    }
+    },
 
-{
+    {
         id: "northlander-billet",
 
         name: "Northlander Billet",
@@ -143,9 +143,9 @@ export const itemDatabase = [
             "Northlander Billet detected. Paimon recommends avoiding panic crafting until you know what weapon you actually want.",
 
         image: null,
-    }
+    },
 
-{
+    {
         id: "parametric-transformer",
 
         name: "Parametric Transformer",
@@ -162,9 +162,9 @@ export const itemDatabase = [
             "Parametric Transformer detected. Most travelers forget this exists for several months at a time.",
 
         image: null,
-    }
+    },
 
-{
+    {
         id: "parametric-transformer",
 
         name: "Parametric Transformer",
@@ -181,7 +181,7 @@ export const itemDatabase = [
             "Parametric Transformer detected. Most travelers forget this exists for several months at a time.",
 
         image: null,
-    }
+    },
 
 
 ];
