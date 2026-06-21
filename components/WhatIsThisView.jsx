@@ -21,6 +21,7 @@ export default function WhatIsThisView() {
     const [investigationResult, setInvestigationResult] = useState(null);
     const [possibleMatches, setPossibleMatches] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [hasSearched, setHasSearched] = useState(false);
 
     const investigateItem = () => {
         const input = itemName.toLowerCase();
@@ -55,6 +56,9 @@ export default function WhatIsThisView() {
     };
 
     const searchSuspiciousObjects = () => {
+        setHasSearched(true);
+        setSelectedItem(null);
+
         const results = itemDatabase.filter((item) => {
             const nameMatch =
                 !itemName.trim() ||
@@ -210,7 +214,7 @@ export default function WhatIsThisView() {
                 </GoblinCard>
 
 
-                {possibleMatches.length > 0 && (
+                {hasSearched && possibleMatches.length > 0 && (
                     <GoblinCard className="mt-6">
                         <p className="mb-4 text-sm uppercase tracking-[0.3em] text-[#98A8D8]/70">
                             Possible Matches
@@ -238,6 +242,23 @@ export default function WhatIsThisView() {
                     </GoblinCard>
                 )}
 
+                {hasSearched && possibleMatches.length === 0 && itemName.trim() && (
+                    <GoblinCard variant="danger" className="mt-6">
+                        <p className="mb-3 text-sm uppercase tracking-[0.3em]">
+                            No Matches Found
+                        </p>
+
+                        <p>
+                            Paimon searched the archives and found nothing.
+                        </p>
+
+                        <p className="mt-3 text-sm opacity-80">
+                            Either this object is extremely rare, extremely new, or you are
+                            describing a spoon.
+                        </p>
+                    </GoblinCard>
+                )}
+
                 {selectedItem && (
                     <GoblinCard className="mt-6">
                         <p className="mb-3 text-sm uppercase tracking-[0.3em] text-[#98A8D8]/70">
@@ -261,13 +282,21 @@ export default function WhatIsThisView() {
                                 <p className="text-sm text-[#C9D3F0]/60">Source</p>
                                 <p>{selectedItem.source}</p>
                             </div>
+
+                            <div>
+                                <p className="text-sm text-[#C9D3F0]/60">Status</p>
+                                <p>{selectedItem.status}</p>
+                            </div>
+
+                            <div>
+                                <p className="text-sm text-[#C9D3F0]/60">Safety</p>
+                                <p>{selectedItem.safety}</p>
+                            </div>
+
                         </div>
 
                         <GoblinCard variant="warm" className="mt-6">
-                            <p>
-                                Paimon has identified the object. Further goblin documentation is
-                                pending.
-                            </p>
+                            <p>{selectedItem.notes}</p>
                         </GoblinCard>
                     </GoblinCard>
                 )}
