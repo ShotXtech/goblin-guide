@@ -3,6 +3,8 @@ export default function GoblinCard({
     className = "",
     variant = "default",
     size = "normal",
+    onClick,
+    ...props
 }) {
     const variants = {
         default: "border-[#98A8D8]/30 bg-[#0f172a]/60",
@@ -18,7 +20,9 @@ export default function GoblinCard({
 
     return (
         <div
+            onClick={onClick}
             className={`border ${variants[variant] || variants.default} ${sizes[size] || sizes.normal} ${className}`}
+            {...props}
         >
             {children}
         </div>

@@ -8,22 +8,31 @@ import GoblinButton from "./ui/GoblinButton";
 import GoblinCard from "./ui/GoblinCard";
 import GoblinSelect from "./ui/GoblinSelect";
 
+import PullPlannerLanding from "./PullPlannerLanding";
+
 import { characterKnowledge } from "../data/characterKnowledge";
 import { characterMetadata } from "../data/characterMetadata";
 
 export default function PullAdvisorView() {
+    // Planner
+    const [plannerMode, setPlannerMode] = useState(null);
+
+    // Filters
     const [rarityFilter, setRarityFilter] = useState("Any");
     const [elementFilter, setElementFilter] = useState("Any");
     const [bannerType, setBannerType] = useState("Character Banner");
     const [pullGoal, setPullGoal] = useState("New 5★ character");
 
+    // Selection
     const [selectedCharacter, setSelectedCharacter] = useState("");
     const [pullResult, setPullResult] = useState(null);
 
+    // Account
     const [wishes, setWishes] = useState("");
     const [primogems, setPrimogems] = useState("");
     const [pity, setPity] = useState("");
     const [guaranteed, setGuaranteed] = useState("No");
+
 
     const pullTargets = Object.entries(characterMetadata).map(
         ([key, metadata]) => ({
@@ -47,6 +56,34 @@ export default function PullAdvisorView() {
     const selectedTarget = pullTargets.find(
         (target) => target.id === selectedCharacter
     );
+
+    const openPlannerMode = (mode) => {
+        setPlannerMode(mode);
+        setPullResult(null);
+
+        if (mode === "new-character") {
+            setPullGoal("New 5★ character");
+            setBannerType("Character Banner");
+            return;
+        }
+
+        if (mode === "constellation") {
+            setPullGoal("Constellation");
+            setBannerType("Character Banner");
+            return;
+        }
+
+        if (mode === "weapon") {
+            setPullGoal("Signature weapon");
+            setBannerType("Weapon Banner");
+            return;
+        }
+
+        if (mode === "featured-four-star") {
+            setPullGoal("4★ character / copies");
+            setBannerType("Character Banner");
+        }
+    };
 
     const analyzePull = () => {
         const totalPulls =
@@ -177,6 +214,19 @@ export default function PullAdvisorView() {
             characterAdvice,
         });
     };
+    if (!plannerMode) {
+        return (
+            <main className="relative min-h-screen overflow-hidden bg-[#050816] p-8 text-[#F7F4EE]">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1b2450_0%,#050816_55%,#02030a_100%)]" />
+
+                <section className="relative z-10 mx-auto flex min-h-screen max-w-5xl flex-col justify-center">
+                    <PullPlannerLanding
+                        onSelect={openPlannerMode}
+                    />
+                </section>
+            </main>
+        );
+    }
 
     return (
         <main className="relative min-h-screen overflow-hidden bg-[#050816] p-8 text-[#F7F4EE]">
