@@ -64,24 +64,28 @@ export default function PullAdvisorView() {
         if (mode === "new-character") {
             setPullGoal("New 5★ character");
             setBannerType("Character Banner");
+            setRarityFilter("5");
             return;
         }
 
         if (mode === "constellation") {
             setPullGoal("Constellation");
             setBannerType("Character Banner");
+            setRarityFilter("5");
             return;
         }
 
         if (mode === "weapon") {
             setPullGoal("Signature weapon");
             setBannerType("Weapon Banner");
+            setRarityFilter("5");
             return;
         }
 
         if (mode === "featured-four-star") {
             setPullGoal("4★ character / copies");
             setBannerType("Character Banner");
+            setRarityFilter("4");
         }
     };
 
@@ -248,6 +252,18 @@ export default function PullAdvisorView() {
                     SHOULD I PULL?
                 </h1>
 
+                <p className="mt-10 text-sm uppercase tracking-[0.35em] text-[#98A8D8]/70">
+                    Current Investigation
+                </p>
+
+                <h2 className="mt-3 text-3xl font-bold text-[#F7D8D2]">
+                    {pullGoal}
+                </h2>
+
+                <p className="mt-2 text-[#C9D3F0]/70">
+                    {bannerType}
+                </p>
+
                 <div className="mt-5 flex items-center gap-4">
                     <div className="h-px w-24 bg-[#F4A59E]/50" />
                     <span className="text-[#F7D8D2]">✦</span>
@@ -261,48 +277,15 @@ export default function PullAdvisorView() {
 
                 <GoblinCard className="mt-8 space-y-5 bg-[#0f172a]/70">
                     <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-2">
-                        <label className="block">
-                            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
-                                Rarity
-                            </p>
 
-                            <GoblinSelect
-                                value={rarityFilter}
-                                onChange={(event) => {
-                                    setRarityFilter(event.target.value);
-                                    setSelectedCharacter("");
-                                    setPullResult(null);
-                                }}
-                            >
-                                <option>Any</option>
-                                <option value="5">5★</option>
-                                <option value="4">4★</option>
-                            </GoblinSelect>
-                        </label>
 
-                        <label className="block">
-                            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
-                                Element
-                            </p>
 
-                            <GoblinSelect
-                                value={elementFilter}
-                                onChange={(event) => {
-                                    setElementFilter(event.target.value);
-                                    setSelectedCharacter("");
-                                    setPullResult(null);
-                                }}
-                            >
-                                <option>Any</option>
-                                <option>Pyro</option>
-                                <option>Hydro</option>
-                                <option>Electro</option>
-                                <option>Cryo</option>
-                                <option>Dendro</option>
-                                <option>Anemo</option>
-                                <option>Geo</option>
-                            </GoblinSelect>
-                        </label>
+                    </div>
+
+                    <GoblinCard size="compact" className="bg-[#080d22]/60">
+                        <p className="mb-4 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
+                            Wish Context
+                        </p>
 
                         <label className="block">
                             <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
@@ -322,31 +305,68 @@ export default function PullAdvisorView() {
                                 <option>Chronicled Wish</option>
                             </GoblinSelect>
                         </label>
-
-                        <label className="block">
-                            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
-                                Pull Goal
-                            </p>
-
-                            <GoblinSelect
-                                value={pullGoal}
-                                onChange={(event) => {
-                                    setPullGoal(event.target.value);
-                                    setPullResult(null);
-                                }}
-                            >
-                                <option>New 5★ character</option>
-                                <option>4★ character / copies</option>
-                                <option>Constellation</option>
-                                <option>Signature weapon</option>
-                            </GoblinSelect>
-                        </label>
-                    </div>
+                    </GoblinCard>
 
                     <label className="block">
                         <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
                             Banner target
                         </p>
+
+                        <GoblinCard
+                            size="compact"
+                            className="bg-[#080d22]/60"
+                        >
+                            <p className="mb-4 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
+                                Filter Character List
+                            </p>
+
+                            <div className="grid gap-4 md:grid-cols-2">
+
+                                {false && (<label className="block">
+                                    <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
+                                        Rarity
+                                    </p>
+
+                                    <GoblinSelect
+                                        value={rarityFilter}
+                                        onChange={(event) => {
+                                            setRarityFilter(event.target.value);
+                                            setSelectedCharacter("");
+                                            setPullResult(null);
+                                        }}
+                                    >
+                                        <option>Any</option>
+                                        <option value="5">5★</option>
+                                        <option value="4">4★</option>
+                                    </GoblinSelect>
+                                </label>)}
+
+                                <label className="block">
+                                    <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/70">
+                                        Element
+                                    </p>
+
+                                    <GoblinSelect
+                                        value={elementFilter}
+                                        onChange={(event) => {
+                                            setElementFilter(event.target.value);
+                                            setSelectedCharacter("");
+                                            setPullResult(null);
+                                        }}
+                                    >
+                                        <option>Any</option>
+                                        <option>Pyro</option>
+                                        <option>Hydro</option>
+                                        <option>Electro</option>
+                                        <option>Cryo</option>
+                                        <option>Dendro</option>
+                                        <option>Anemo</option>
+                                        <option>Geo</option>
+                                    </GoblinSelect>
+                                </label>
+
+                            </div>
+                        </GoblinCard>
 
                         <GoblinSelect
                             value={selectedCharacter}
