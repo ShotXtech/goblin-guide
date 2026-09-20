@@ -9,12 +9,50 @@ import Link from "next/link";
 
 import { characterKnowledge } from "../data/characterKnowledge";
 import { characterMetadata } from "../data/characterMetadata";
+import { artifactCharacterPreferences } from "../data/artifactCharacterPreferences";
+import { characterWeaponPreferences } from "../data/characterWeaponPreferences";
+import { weaponDatabase } from "../data/weaponsDatabase";
+
 import {
     elementIcons,
     weaponIcons,
     regionIcons,
     elementStyles,
 } from "../data/characterDisplay";
+
+function WeaponRecommendationCard({ weapon }) {
+    return (
+        <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+            <div className="flex items-start justify-between gap-4">
+                <div>
+                    <p className="font-bold text-[#F7F4EE]">
+                        {weapon.name}
+                    </p>
+
+                    <p className="mt-1 text-sm text-[#C9D3F0]/60">
+                        {weapon.weaponType} • {weapon.secondaryStat}
+                    </p>
+                </div>
+
+                <span
+                    className={
+                        weapon.rarity === 5
+                            ? "text-[#F3C969]"
+                            : "text-[#C8A6FF]"
+                    }
+                >
+                    {"★".repeat(weapon.rarity)}
+                </span>
+            </div>
+
+            {weapon.notes && (
+                <p className="mt-3 text-sm leading-6 text-[#C9D3F0]/80">
+                    {weapon.notes}
+                </p>
+            )}
+        </div>
+    );
+}
 
 export default function CharacterHelpView() {
     const [characterInput, setCharacterInput] = useState("");
@@ -40,10 +78,33 @@ export default function CharacterHelpView() {
         );
 
         if (foundKey) {
+            const weaponPreferences =
+                characterWeaponPreferences[foundKey] || null;
+
+            const weaponRecommendations = weaponPreferences
+                ? {
+                    signature: weaponPreferences.signature
+                        ? weaponDatabase[weaponPreferences.signature] || null
+                        : null,
+
+                    alternatives: (weaponPreferences.alternatives || [])
+                        .map((weaponKey) => weaponDatabase[weaponKey])
+                        .filter(Boolean),
+
+                    f2p: (weaponPreferences.f2p || [])
+                        .map((weaponKey) => weaponDatabase[weaponKey])
+                        .filter(Boolean),
+                }
+                : null;
+
             setCharacterResult({
                 ...characterKnowledge[foundKey],
                 ...characterMetadata[foundKey],
+                artifactPreferences:
+                    artifactCharacterPreferences[foundKey] || null,
+                weaponRecommendations,
             });
+
             return;
         }
 
@@ -168,6 +229,120 @@ export default function CharacterHelpView() {
                                 </p>
                             </div>
                         </div>
+
+                        {characterResult.artifactPreferences && (
+                            <GoblinCard className="mt-6 rounded-2xl border border-[#98A8D8]/25 bg-[#080d22]/60 p-5">
+                                <p className="text-sm uppercase tracking-[0.3em] text-[#F4A59E]">
+                                    Build me, I&apos;m new
+                                </p>
+
+                                <h3 className="mt-3 text-xl font-bold text-[#F7F4EE]">
+                                    Artifact stats to look for
+                                </h3>
+
+                                <div className="mt-4 flex flex-wrap gap-2">
+                                    {characterResult.artifactPreferences.wants.map((stat) => (
+                                        <span
+                                            key={stat}
+                                            className="rounded-full border border-[#98A8D8]/20 bg-[#98A8D8]/10 px-3 py-1 text-sm text-[#C9D3F0]"
+                                        >
+                                            {stat}
+                                        </span>
+                                    ))}
+                                </div>
+                                <div className="mt-6 grid gap-3 md:grid-cols-3">
+                                    {Object.entries(
+                                        characterResult.artifactPreferences.mainStats
+                                    ).map(([slot, stats]) => (
+                                        <div
+                                            key={slot}
+                                            className="rounded-xl border border-white/10 bg-white/[0.03] p-4"
+                                        >
+                                            <p className="text-sm text-[#C9D3F0]/60">
+                                                {slot}
+                                            </p>
+
+                                            <div className="mt-2 space-y-1">
+                                                {stats.map((stat) => (
+                                                    <p
+                                                        key={stat}
+                                                        className="font-semibold text-[#F7F4EE]"
+                                                    >
+                                                        {stat}
+                                                    </p>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </GoblinCard>
+                        )}
+
+                        {characterResult.weaponRecommendations && (
+                            <GoblinCard className="mt-6 rounded-2xl border border-[#98A8D8]/25 bg-[#080d22]/60 p-5">
+                                <p className="text-sm uppercase tracking-[0.3em] text-[#F4A59E]">
+                                    Recommended weapons
+                                </p>
+
+                                <h3 className="mt-3 text-xl font-bold text-[#F7F4EE]">
+                                    Things to bonk enemies with
+                                </h3>
+
+                                <div className="mt-4 space-y-5">
+                                    {characterResult.weaponRecommendations.signature && (
+                                        <div>
+                                            <p className="mb-2 text-sm font-semibold text-[#F3C969]">
+                                                Signature
+                                            </p>
+
+                                            <WeaponRecommendationCard
+                                                weapon={
+                                                    characterResult.weaponRecommendations.signature
+                                                }
+                                            />
+                                        </div>
+                                    )}
+
+                                    {characterResult.weaponRecommendations.alternatives.length > 0 && (
+                                        <div>
+                                            <p className="mb-2 text-sm font-semibold text-[#C9D3F0]">
+                                                Good alternatives
+                                            </p>
+
+                                            <div className="grid gap-3">
+                                                {characterResult.weaponRecommendations.alternatives.map(
+                                                    (weapon) => (
+                                                        <WeaponRecommendationCard
+                                                            key={weapon.name}
+                                                            weapon={weapon}
+                                                        />
+                                                    )
+                                                )}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {characterResult.weaponRecommendations.f2p.length > 0 && (
+                                        <div>
+                                            <p className="mb-2 text-sm font-semibold text-[#C9D3F0]">
+                                                F2P / accessible
+                                            </p>
+
+                                            <div className="grid gap-3">
+                                                {characterResult.weaponRecommendations.f2p.map(
+                                                    (weapon) => (
+                                                        <WeaponRecommendationCard
+                                                            key={weapon.name}
+                                                            weapon={weapon}
+                                                        />
+                                                    )
+                                                )}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </GoblinCard>
+                        )}
 
                         {characterResult.synergy && (
                             <GoblinCard className="mt-6 rounded-2xl border border-[#98A8D8]/25 bg-[#080d22]/60 p-5">
