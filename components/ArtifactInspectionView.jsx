@@ -256,112 +256,140 @@ export default function ArtifactInspectionView() {
                         </div>
 
                         {artifactResult.characterMatch && (
-                            <div className="mt-6 rounded-2xl border border-[#98A8D8]/30 bg-[#111936]/60 p-5">
-                                <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#98A8D8]/80">
-                                    Character Match
-                                </p>
+                            <div className="mt-10">
+                                <div className="flex flex-wrap items-end justify-between gap-4">
+                                    <div>
+                                        <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#98A8D8]/70">
+                                            Character Match
+                                        </p>
 
-                                <h3 className="text-xl font-bold text-[#F7F4EE]">
-                                    {artifactResult.characterMatch.title}
-                                </h3>
+                                        <h3 className="mt-2 font-cinzel text-2xl font-bold text-[#F7F4EE]">
+                                            {artifactResult.characterMatch.title}
+                                        </h3>
+                                    </div>
 
-                                <p className="mt-2 font-bold text-[#F7D8D2]">
-                                    {artifactResult.characterMatch.matchRating}
-                                </p>
-
-                                <div
-                                    className={`mt-4 rounded-2xl border p-4 ${artifactResult.characterMatch.mainStatMatch
-                                        ? "border-emerald-400/20 bg-emerald-950/20"
-                                        : "border-red-400/20 bg-red-950/20"
-                                        }`}
-                                >
-                                    <p
-                                        className={`font-bold ${artifactResult.characterMatch.mainStatMatch
-                                            ? "text-emerald-200"
-                                            : "text-red-200"
-                                            }`}
-                                    >
-                                        {artifactResult.characterMatch.mainStatMatch
-                                            ? "✓ Main Stat Approved"
-                                            : "⚠ Main Stat Mismatch"}
+                                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#F7D8D2]">
+                                        {artifactResult.characterMatch.matchRating}
                                     </p>
-
-                                    <p className="mt-2 text-sm text-[#C9D3F0]/70">
-                                        Current: {artifactResult.artifactMainStat}{" "}
-                                        {artifactResult.characterMatch.artifactType}
-                                    </p>
-
-                                    {artifactResult.characterMatch.preferredMainStats?.length >
-                                        0 && (
-                                            <p className="mt-2 text-sm text-[#C9D3F0]/70">
-                                                Preferred for{" "}
-                                                {artifactResult.characterMatch.artifactType}:{" "}
-                                                <span className="text-[#F7F4EE]">
-                                                    {artifactResult.characterMatch.preferredMainStats.join(
-                                                        " / "
-                                                    )}
-                                                </span>
-                                            </p>
-                                        )}
                                 </div>
 
-                                <div className="mt-5 grid gap-4 md:grid-cols-2">
-                                    <div>
-                                        <p className="mb-2 text-sm text-[#C9D3F0]/70">
-                                            Useful for this character:
+                                <div className="mt-5 h-px bg-gradient-to-r from-[#98A8D8]/30 via-[#98A8D8]/10 to-transparent" />
+
+                                <div className="mt-5">
+                                    <div className="flex items-start gap-3">
+                                        <span
+                                            className={
+                                                artifactResult.characterMatch.mainStatMatch
+                                                    ? "text-emerald-300"
+                                                    : "text-[#F4A59E]"
+                                            }
+                                        >
+                                            {artifactResult.characterMatch.mainStatMatch ? "✓" : "⚠"}
+                                        </span>
+
+                                        <div>
+                                            <p
+                                                className={`text-xs font-bold uppercase tracking-[0.18em] ${artifactResult.characterMatch.mainStatMatch
+                                                    ? "text-emerald-200/80"
+                                                    : "text-[#F4A59E]/80"
+                                                    }`}
+                                            >
+                                                {artifactResult.characterMatch.mainStatMatch
+                                                    ? "Main Stat Approved"
+                                                    : "Main Stat Mismatch"}
+                                            </p>
+
+                                            <p className="mt-2 text-sm text-[#C9D3F0]/70">
+                                                Current{" "}
+                                                <span className="text-[#F7F4EE]">
+                                                    {artifactResult.artifactMainStat}
+                                                </span>
+                                                {" · "}
+                                                {artifactResult.characterMatch.artifactType}
+                                            </p>
+
+                                            {artifactResult.characterMatch.preferredMainStats?.length > 0 && (
+                                                <p className="mt-1 text-sm text-[#C9D3F0]/50">
+                                                    Preferred{" "}
+                                                    <span className="text-[#C9D3F0]/80">
+                                                        {artifactResult.characterMatch.preferredMainStats.join(
+                                                            " / "
+                                                        )}
+                                                    </span>
+                                                </p>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="mt-7 grid gap-6 md:grid-cols-2">
+                                    <div className="md:border-r md:border-white/10 md:pr-6">
+                                        <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-emerald-200/70">
+                                            Useful for this character
                                         </p>
 
                                         {artifactResult.characterMatch.matchedStats.length > 0 ? (
-                                            <div className="space-y-1 text-[#C9D3F0]">
-                                                {artifactResult.characterMatch.matchedStats.map(
-                                                    (stat) => (
-                                                        <p key={stat}>✓ {stat}</p>
-                                                    )
-                                                )}
+                                            <div className="space-y-2">
+                                                {artifactResult.characterMatch.matchedStats.map((stat) => (
+                                                    <p
+                                                        key={stat}
+                                                        className="text-sm text-[#C9D3F0]"
+                                                    >
+                                                        <span className="mr-2 text-emerald-300">
+                                                            ✓
+                                                        </span>
+                                                        {stat}
+                                                    </p>
+                                                ))}
                                             </div>
                                         ) : (
-                                            <p className="text-[#C9D3F0]/60">
+                                            <p className="text-sm text-[#C9D3F0]/50">
                                                 No matching stats detected.
                                             </p>
                                         )}
                                     </div>
 
-                                    <div>
-                                        <p className="mb-2 text-sm text-[#C9D3F0]/70">
-                                            Missing / wanted:
+                                    <div className="md:pl-2">
+                                        <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#F4A59E]/70">
+                                            Missing / Wanted
                                         </p>
 
                                         {artifactResult.characterMatch.missingStats.length > 0 ? (
-                                            <div className="space-y-1 text-[#C9D3F0]/80">
-                                                {artifactResult.characterMatch.missingStats.map(
-                                                    (stat) => (
-                                                        <p key={stat}>⚠ {stat}</p>
-                                                    )
-                                                )}
+                                            <div className="space-y-2">
+                                                {artifactResult.characterMatch.missingStats.map((stat) => (
+                                                    <p
+                                                        key={stat}
+                                                        className="text-sm text-[#C9D3F0]"
+                                                    >
+                                                        <span className="mr-2 text-[#F4A59E]">
+                                                            ◇
+                                                        </span>
+                                                        {stat}
+                                                    </p>
+                                                ))}
                                             </div>
                                         ) : (
-                                            <p className="text-[#C9D3F0]/60">
+                                            <p className="text-sm italic text-[#C9D3F0]/50">
                                                 Nothing obvious missing. Suspiciously competent.
                                             </p>
                                         )}
                                     </div>
                                 </div>
 
-                                <p className="mt-5 leading-7 text-[#F7F4EE]">
-                                    {artifactResult.characterMatch.verdict}
-                                </p>
+                                <div className="mt-7 flex gap-3 border-l border-[#F4A59E]/30 pl-4">
+                                    <span className="text-[#F7D8D2]/60">✦</span>
+
+                                    <div>
+                                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#F7D8D2]/60">
+                                            Paimon's Case Note
+                                        </p>
+
+                                        <p className="mt-2 max-w-2xl text-sm italic leading-6 text-[#C9D3F0]/80">
+                                            {artifactResult.characterMatch.verdict}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         )}
-
-                        <div className="mt-6 rounded-2xl border border-[#F4A59E]/30 bg-[#241a28]/60 p-5">
-                            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#F7D8D2]/80">
-                                Paimon&apos;s Verdict
-                            </p>
-
-                            <p className="leading-7 text-[#F7F4EE]">
-                                {artifactResult.verdict}
-                            </p>
-                        </div>
 
                         <div className="mt-10">
                             <div className="mb-6 flex items-center justify-center gap-3">
