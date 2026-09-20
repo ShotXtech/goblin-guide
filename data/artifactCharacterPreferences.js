@@ -1227,6 +1227,61 @@ export const artifactCharacterPreferences = {
             "Nicole appreciates crit, Pyro damage, and plans that are somehow five dimensions ahead of everyone else.",
     },
 
+    odette: {
+        wants: ["Crit Rate", "Crit Damage", "ATK%", "Elemental Mastery"],
+        mainStats: {
+            Sands: ["ATK%"],
+            Goblet: ["ATK%"],
+            Circlet: ["Crit Rate", "Crit Damage"],
+        },
+        verdict:
+            "Odette wants crit and attack. Cryo goblets have been politely escorted out of the ballet.",
+    },
+
+    alyosha: {
+        wants: ["Energy Recharge", "ATK%", "Crit Rate"],
+        mainStats: {
+            Sands: ["Energy Recharge", "ATK%"],
+            Goblet: ["ATK%"],
+            Circlet: ["Healing Bonus", "ATK%", "Crit Rate"],
+        },
+        verdict:
+            "Alyosha wants enough ER to keep the support department operational. Tugarin handles complaints.",
+    },
+
+    sandrone: {
+        wants: ["Crit Rate", "Crit Damage", "ATK%", "Energy Recharge", "Elemental Mastery"],
+        mainStats: {
+            Sands: ["ATK%"],
+            Goblet: ["ATK%"],
+            Circlet: ["Crit Rate", "Crit Damage"],
+        },
+        verdict:
+            "Sandrone wants crit and attack. The giant mechanical assistant has rejected your Cryo goblet.",
+    },
+
+    vesna: {
+        wants: ["Crit Rate", "Crit Damage", "ATK%", "Elemental Mastery"],
+        mainStats: {
+            Sands: ["ATK%"],
+            Goblet: ["ATK%"],
+            Circlet: ["Crit Rate", "Crit Damage"],
+        },
+        verdict:
+            "Vesna wants attack and crit. Apparently becoming the hurricane requires extremely aggressive paperwork.",
+    },
+
+    vodyanitsa: {
+        wants: ["HP%", "Energy Recharge"],
+        mainStats: {
+            Sands: ["HP%", "Energy Recharge"],
+            Goblet: ["HP%"],
+            Circlet: ["HP%", "Healing Bonus"],
+        },
+        verdict:
+            "Vodyanitsa wants HP. Then more HP. The Prima Donna has requested an entire health bar as supporting documentation.",
+    },
+
     traveler: {
         wants: ["Crit Rate", "Crit Damage", "Energy Recharge"],
         mainStats: {

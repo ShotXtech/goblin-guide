@@ -87,6 +87,10 @@ export default function CharacterHelpView() {
                         ? weaponDatabase[weaponPreferences.signature] || null
                         : null,
 
+                    premium: (weaponPreferences.premium || [])
+                        .map((weaponKey) => weaponDatabase[weaponKey])
+                        .filter(Boolean),
+
                     alternatives: (weaponPreferences.alternatives || [])
                         .map((weaponKey) => weaponDatabase[weaponKey])
                         .filter(Boolean),
@@ -211,28 +215,43 @@ export default function CharacterHelpView() {
                             )}
                         </div>
 
-                        <div className="mt-6 grid gap-4 md:grid-cols-3">
-                            <div className="rounded-2xl border border-[#98A8D8]/20 p-4">
-                                <p className="text-sm text-[#C9D3F0]/60">Role</p>
-                                <p className="mt-2 font-bold">{characterResult.role}</p>
-                            </div>
+                        <div className="mt-7 border-y border-white/10 py-5">
+                            <div className="grid gap-5 md:grid-cols-[1fr_1fr_auto] md:items-end">
+                                <div>
+                                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#98A8D8]/60">
+                                        Role
+                                    </p>
 
-                            <div className="rounded-2xl border border-[#98A8D8]/20 p-4">
-                                <p className="text-sm text-[#C9D3F0]/60">Priority</p>
-                                <p className="mt-2 font-bold">{characterResult.priority}</p>
-                            </div>
+                                    <p className="mt-2 font-bold text-[#F7F4EE]">
+                                        {characterResult.role}
+                                    </p>
+                                </div>
 
-                            <div className="rounded-2xl border border-[#98A8D8]/20 p-4">
-                                <p className="text-sm text-[#C9D3F0]/60">Recommendation</p>
-                                <p className="mt-2 font-bold">
-                                    {characterResult.recommendation}
-                                </p>
+                                <div>
+                                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#98A8D8]/60">
+                                        Build Priority
+                                    </p>
+
+                                    <p className="mt-2 font-bold text-[#F7F4EE]">
+                                        {characterResult.priority}
+                                    </p>
+                                </div>
+
+                                <div className="md:text-right">
+                                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#F7D8D2]/60">
+                                        Paimon Says
+                                    </p>
+
+                                    <p className="mt-2 font-bold text-[#F7D8D2]">
+                                        {characterResult.recommendation}
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
                         {characterResult.artifactPreferences && (
-                            <GoblinCard className="mt-6 rounded-2xl border border-[#98A8D8]/25 bg-[#080d22]/60 p-5">
-                                <p className="text-sm uppercase tracking-[0.3em] text-[#F4A59E]">
+                            <section className="mt-8">
+                                <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#F4A59E]/80">
                                     Build me, I&apos;m new
                                 </p>
 
@@ -240,33 +259,39 @@ export default function CharacterHelpView() {
                                     Artifact stats to look for
                                 </h3>
 
-                                <div className="mt-4 flex flex-wrap gap-2">
+                                <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
                                     {characterResult.artifactPreferences.wants.map((stat) => (
                                         <span
                                             key={stat}
-                                            className="rounded-full border border-[#98A8D8]/20 bg-[#98A8D8]/10 px-3 py-1 text-sm text-[#C9D3F0]"
+                                            className="text-sm text-[#C9D3F0]/80"
                                         >
+                                            <span className="mr-2 text-[#F7D8D2]/60">✦</span>
                                             {stat}
                                         </span>
                                     ))}
                                 </div>
-                                <div className="mt-6 grid gap-3 md:grid-cols-3">
+
+                                <div className="mt-6 grid gap-6 border-t border-white/10 pt-5 md:grid-cols-3">
                                     {Object.entries(
                                         characterResult.artifactPreferences.mainStats
-                                    ).map(([slot, stats]) => (
+                                    ).map(([slot, stats], index) => (
                                         <div
                                             key={slot}
-                                            className="rounded-xl border border-white/10 bg-white/[0.03] p-4"
+                                            className={
+                                                index < 2
+                                                    ? "md:border-r md:border-white/10 md:pr-6"
+                                                    : ""
+                                            }
                                         >
-                                            <p className="text-sm text-[#C9D3F0]/60">
+                                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#98A8D8]/60">
                                                 {slot}
                                             </p>
 
-                                            <div className="mt-2 space-y-1">
+                                            <div className="mt-3 space-y-2">
                                                 {stats.map((stat) => (
                                                     <p
                                                         key={stat}
-                                                        className="font-semibold text-[#F7F4EE]"
+                                                        className="text-sm font-semibold text-[#F7F4EE]"
                                                     >
                                                         {stat}
                                                     </p>
@@ -275,23 +300,23 @@ export default function CharacterHelpView() {
                                         </div>
                                     ))}
                                 </div>
-                            </GoblinCard>
+                            </section>
                         )}
 
                         {characterResult.weaponRecommendations && (
-                            <GoblinCard className="mt-6 rounded-2xl border border-[#98A8D8]/25 bg-[#080d22]/60 p-5">
-                                <p className="text-sm uppercase tracking-[0.3em] text-[#F4A59E]">
-                                    Recommended weapons
+                            <section className="mt-10">
+                                <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#F4A59E]/80">
+                                    Recommended Weapons
                                 </p>
 
                                 <h3 className="mt-3 text-xl font-bold text-[#F7F4EE]">
                                     Things to bonk enemies with
                                 </h3>
 
-                                <div className="mt-4 space-y-5">
+                                <div className="mt-6 space-y-7">
                                     {characterResult.weaponRecommendations.signature && (
                                         <div>
-                                            <p className="mb-2 text-sm font-semibold text-[#F3C969]">
+                                            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#F3C969]/80">
                                                 Signature
                                             </p>
 
@@ -303,10 +328,29 @@ export default function CharacterHelpView() {
                                         </div>
                                     )}
 
+                                    {characterResult.weaponRecommendations.premium.length > 0 && (
+                                        <div>
+                                            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#C9B8F4]/80">
+                                                Premium Alternatives
+                                            </p>
+
+                                            <div className="grid gap-3">
+                                                {characterResult.weaponRecommendations.premium.map(
+                                                    (weapon) => (
+                                                        <WeaponRecommendationCard
+                                                            key={weapon.name}
+                                                            weapon={weapon}
+                                                        />
+                                                    )
+                                                )}
+                                            </div>
+                                        </div>
+                                    )}
+
                                     {characterResult.weaponRecommendations.alternatives.length > 0 && (
                                         <div>
-                                            <p className="mb-2 text-sm font-semibold text-[#C9D3F0]">
-                                                Good alternatives
+                                            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#98A8D8]/70">
+                                                Good Alternatives
                                             </p>
 
                                             <div className="grid gap-3">
@@ -324,8 +368,8 @@ export default function CharacterHelpView() {
 
                                     {characterResult.weaponRecommendations.f2p.length > 0 && (
                                         <div>
-                                            <p className="mb-2 text-sm font-semibold text-[#C9D3F0]">
-                                                F2P / accessible
+                                            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#98A8D8]/70">
+                                                F2P / Accessible
                                             </p>
 
                                             <div className="grid gap-3">
@@ -341,31 +385,44 @@ export default function CharacterHelpView() {
                                         </div>
                                     )}
                                 </div>
-                            </GoblinCard>
+                            </section>
                         )}
 
                         {characterResult.synergy && (
-                            <GoblinCard className="mt-6 rounded-2xl border border-[#98A8D8]/25 bg-[#080d22]/60 p-5">
-                                <p className="mb-4 text-sm uppercase tracking-[0.3em] text-[#98A8D8]/70">
+                            <section className="mt-10">
+                                <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#98A8D8]/70">
                                     Works Well With
                                 </p>
 
-                                <div className="space-y-3">
+                                <div className="mt-5 divide-y divide-white/10">
                                     {characterResult.synergy.map((item) => (
                                         <div
                                             key={item}
-                                            className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[#C9D3F0]"
+                                            className="py-4 first:pt-0 last:pb-0"
                                         >
-                                            {item}
+                                            <p className="text-sm leading-6 text-[#C9D3F0]/85">
+                                                <span className="mr-3 text-[#F7D8D2]/50">✦</span>
+                                                {item}
+                                            </p>
                                         </div>
                                     ))}
                                 </div>
-                            </GoblinCard>
+                            </section>
                         )}
 
-                        <GoblinCard variant="warm" className="mt-6 rounded-2xl p-5">
-                            <p className="text-[#F7D8D2]">{characterResult.paimon}</p>
-                        </GoblinCard>
+                        <div className="mt-10 flex gap-3 border-l border-[#F4A59E]/30 pl-4">
+                            <span className="text-[#F7D8D2]/60">✦</span>
+
+                            <div>
+                                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#F7D8D2]/60">
+                                    Paimon&apos;s Assessment
+                                </p>
+
+                                <p className="mt-2 max-w-2xl text-sm italic leading-6 text-[#C9D3F0]/80">
+                                    {characterResult.paimon}
+                                </p>
+                            </div>
+                        </div>
                     </GoblinCard>
                 )}
             </section>

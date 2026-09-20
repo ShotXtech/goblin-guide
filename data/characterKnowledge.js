@@ -1778,4 +1778,84 @@ export const characterKnowledge = {
     paimon:
       "Archive incomplete. Zibai remains annoyingly undocumented.",
   },
+
+  odette: {
+    title: "Odette",
+    role: "Cryo Sub-DPS / Support",
+    priority: "CRIT → ATK → ER",
+    recommendation:
+      "Build for Stellar teams if elegant Cryo paperwork is part of the current disaster.",
+    synergy: [
+      "Sandrone — premium partner for Stellar-Conduct and extremely expensive Cryo paperwork.",
+      "Alyosha — brings Electro utility and support for Stellar-Conduct teams.",
+      "Vesna — Cryo application helps enable Stellar Swirl crimes.",
+      "Stellar teams — off-field Cryo support with suspiciously elegant reaction paperwork.",
+    ],
+    paimon:
+      "Odette detected. The ballet is beautiful, the Cryo damage is concerning, and Paimon suspects the paperwork is classified.",
+  },
+
+  alyosha: {
+    title: "Alyosha",
+    role: "Electro Support / Healer",
+    priority: "ER → Support Stats",
+    recommendation:
+      "Build for Stellar-Conduct teams that need Electro, healing, and one suspiciously efficient support slot.",
+    synergy: [
+      "Sandrone — enables Stellar-Conduct while keeping the Harbinger-related workplace incident alive.",
+      "Odette — Electro plus Cryo makes the Stellar paperwork significantly more interesting.",
+      "Stellar-Conduct teams — provides reaction support and healing without stealing field time.",
+      "Teams needing Electro comfort — healing department has entered the lightning incident.",
+    ],
+    paimon:
+      "Alyosha detected. Electro application, healing, support utility. Paimon has checked the paperwork and is suspicious of this much competence.",
+  },
+
+  sandrone: {
+    title: "Sandrone",
+    role: "Cryo Main DPS",
+    priority: "CRIT → ATK → ER",
+    recommendation:
+      "Build if you would like your Stellar-Conduct team supervised by a Harbinger and an enormous mechanical problem.",
+    synergy: [
+      "Odette — premium Cryo partner and Stellar support for maximum classified paperwork.",
+      "Alyosha — provides Electro support, healing, and Stellar-Conduct enabling.",
+      "Electro off-field supports — keep Stellar-Conduct available while Sandrone handles the violence personally.",
+      "Stellar-Conduct teams — this is where the mechanical workplace incident becomes a build archetype.",
+    ],
+    paimon:
+      "Sandrone detected. Fatui Harbinger plus giant machine plus experimental reaction mechanics. Paimon sees no possible workplace safety concerns.",
+  },
+
+  vesna: {
+    title: "Vesna",
+    role: "Anemo Main DPS",
+    priority: "CRIT → ATK",
+    recommendation:
+      "Prepare if becoming the wind and personally committing Stellar Swirl crimes sounds financially responsible.",
+    synergy: [
+      "Odette — off-field Cryo helps provide ammunition for Stellar Swirl.",
+      "Vodyanitsa — Hydro support, sustain, and suspiciously convenient Stellar assistance.",
+      "Cryo off-field supports — provide elements for Vesna to turn into airborne paperwork.",
+      "Stellar Swirl teams — commander has arrived and apparently the battle plan is wind.",
+    ],
+    paimon:
+      "Vesna detected. The commander has reviewed the tactical situation and concluded that she should become the hurricane.",
+  },
+
+  vodyanitsa: {
+    title: "Vodyanitsa",
+    role: "Hydro Support / Healer",
+    priority: "ER → Support Stats",
+    recommendation:
+      "Prepare for Stellar teams if healing, Hydro utility, and suspicious amounts of support value are required.",
+    synergy: [
+      "Vesna — supports the incoming Stellar Swirl hurricane while Vesna handles field time.",
+      "Stellar Swirl teams — Hydro application and support utility for reaction-related crimes.",
+      "Reaction DPS characters — provides Hydro while contributing defensive and offensive support.",
+      "Teams needing Hydro comfort — apparently one Prima Donna can operate an entire support department.",
+    ],
+    paimon:
+      "Vodyanitsa detected. Prima Donna, Hydro support, healer. Paimon suspects somebody put an entire support department into one woman.",
+  },
 };

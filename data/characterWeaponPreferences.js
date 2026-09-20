@@ -12,12 +12,23 @@ export const characterWeaponPreferences = {
     },
 
     furina: {
-        signature: null,
+        signature: "splendorOfTranquilWaters",
 
-        alternatives: [
-            "favoniusSword",
+        premium: [
+            "keyOfKhajNisut",
+            "primordialJadeCutter",
         ],
 
-        f2p: [],
+        alternatives: [
+            "festeringDesire",
+            "favoniusSword",
+            "fleuveCendreFerryman",
+            "wolfFang",
+        ],
+
+        f2p: [
+            "fleuveCendreFerryman",
+        ],
     },
+
 };
