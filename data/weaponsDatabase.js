@@ -3286,4 +3286,56 @@ export const weaponDatabase = {
         notes:
             "High Base ATK and Energy Recharge polearm. Useful as a general ER stat stick when a character needs reliable Burst access.",
     },
+
+    beyondTheChrysalis: {
+        name: "Beyond the Chrysalis",
+        rarity: 5,
+        weaponType: "Sword",
+        baseAtk: 674,
+        secondaryStat: "CRIT DMG",
+        secondaryValue: "44.1%",
+        passive: "Dance of Wings Unbound",
+        source: "Weapon Event Wish",
+        notes:
+            "Vesna's signature sword. Premium Anemo DPS weapon built around her combat style.",
+    },
+
+    hymnOfTheMaelstrom: {
+        name: "Hymn of the Maelstrom",
+        rarity: 5,
+        weaponType: "Catalyst",
+        baseAtk: 542,
+        secondaryStat: "HP",
+        secondaryValue: "66.2%",
+        passive: "Rondo of Slumber",
+        source: "Weapon Event Wish",
+        notes:
+            "Vodyanitsa's signature catalyst. Massive HP stat with healing, Max HP, and active-character ATK support.",
+    },
+
+    thrillingTalesOfDragonSlayers: {
+        name: "Thrilling Tales of Dragon Slayers",
+        rarity: 3,
+        weaponType: "Catalyst",
+        baseAtk: 401,
+        secondaryStat: "HP",
+        secondaryValue: "35.2%",
+        passive: "Heritage",
+        source: "Wish",
+        notes:
+            "Tiny book, enormous support crimes. HP stat and a powerful ATK buff for the next character taking the field.",
+    },
+
+    fleuveCendreFerryman: {
+        name: "Fleuve Cendre Ferryman",
+        rarity: 4,
+        weaponType: "Sword",
+        baseAtk: 510,
+        secondaryStat: "Energy Recharge",
+        secondaryValue: "45.9%",
+        passive: "Ironbone",
+        source: "Fontaine Fishing Association",
+        notes:
+            "Free fishing sword with Energy Recharge and useful Skill-focused utility. Surprisingly respectable for something obtained through fish-related suffering.",
+    },
 };

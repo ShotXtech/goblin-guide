@@ -156,5 +156,66 @@ export const characterWeaponPreferences = {
         ],
     },
 
+    vesna: {
+        signature: "beyondTheChrysalis",
 
+        premium: [
+            "whitelakeFrostfeather",
+            "absolution",
+            "azurelight",
+            "primordialJadeCutter",
+        ],
+
+        alternatives: [
+            "theBlackSword",
+            "wolfFang",
+        ],
+
+        f2p: [
+            "emberwell",
+            "finaleOfTheDeep",
+            "ironSting",
+        ],
+    },
+
+    vodyanitsa: {
+        signature: "hymnOfTheMaelstrom",
+
+        premium: [
+            "jadefallsSplendor",
+            "everlastingMoonglow",
+        ],
+
+        alternatives: [
+            "waveridingWhirl",
+            "prototypeAmber",
+            "ashGravenDrinkingHorn",
+        ],
+
+        f2p: [
+            "thrillingTalesOfDragonSlayers",
+            "prototypeAmber",
+        ],
+    },
+
+    dahlia: {
+        signature: null,
+
+        premium: [
+            "keyOfKhajNisut",
+            "freedomSworn",
+            "peakPatrolSong",
+        ],
+
+        alternatives: [
+            "favoniusSword",
+            "theDockhandsAssistant",
+            "sacrificialSword",
+        ],
+
+        f2p: [
+            "fleuveCendreFerryman",
+            "sapwoodBlade",
+        ],
+    },
 };
