@@ -3260,4 +3260,30 @@ export const weaponDatabase = {
         notes:
             "High Base ATK and CRIT DMG with Plunging Attack support. Gravity has once again become somebody's entire business model.",
     },
+
+    splendorOfTranquilWaters: {
+        name: "Splendor of Tranquil Waters",
+        rarity: 5,
+        weaponType: "Sword",
+        baseAtk: 542,
+        secondaryStat: "CRIT DMG",
+        secondaryValue: "88.2%",
+        passive: "Dawn and Dusk by the Lake",
+        source: "Weapon Event Wish",
+        notes:
+            "Furina's signature sword. Huge CRIT DMG and a passive built around HP changes and Elemental Skill damage.",
+    },
+
+    skywardSpine: {
+        name: "Skyward Spine",
+        rarity: 5,
+        weaponType: "Polearm",
+        baseAtk: 674,
+        secondaryStat: "Energy Recharge",
+        secondaryValue: "36.8%",
+        passive: "Black Wing",
+        source: "Wish",
+        notes:
+            "High Base ATK and Energy Recharge polearm. Useful as a general ER stat stick when a character needs reliable Burst access.",
+    },
 };

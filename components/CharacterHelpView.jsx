@@ -58,6 +58,20 @@ export default function CharacterHelpView() {
     const [characterInput, setCharacterInput] = useState("");
     const [characterResult, setCharacterResult] = useState(null);
 
+    const [openWeaponSections, setOpenWeaponSections] = useState({
+        signature: true,
+        premium: false,
+        alternatives: false,
+        f2p: false,
+    });
+    const toggleWeaponSection = (section) => {
+        setOpenWeaponSections((current) => ({
+            ...current,
+            [section]: !current[section],
+        }));
+    };
+
+
     const analyzeCharacter = () => {
         const input = characterInput.toLowerCase();
 
@@ -216,7 +230,7 @@ export default function CharacterHelpView() {
                         </div>
 
                         <div className="mt-7 border-y border-white/10 py-5">
-                            <div className="grid gap-5 md:grid-cols-[1fr_1fr_auto] md:items-end">
+                            <div className="grid gap-6 md:grid-cols-[1fr_1fr_2fr] md:items-start">
                                 <div>
                                     <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#98A8D8]/60">
                                         Role
@@ -237,7 +251,7 @@ export default function CharacterHelpView() {
                                     </p>
                                 </div>
 
-                                <div className="md:text-right">
+                                <div>
                                     <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#F7D8D2]/60">
                                         Paimon Says
                                     </p>
@@ -255,7 +269,7 @@ export default function CharacterHelpView() {
                                     Build me, I&apos;m new
                                 </p>
 
-                                <h3 className="mt-3 text-xl font-bold text-[#F7F4EE]">
+                                <h3 className="mt-2 text-sm font-medium text-[#F7F4EE]/70">
                                     Artifact stats to look for
                                 </h3>
 
@@ -309,79 +323,129 @@ export default function CharacterHelpView() {
                                     Recommended Weapons
                                 </p>
 
-                                <h3 className="mt-3 text-xl font-bold text-[#F7F4EE]">
+                                <h3 className="mt-2 text-sm font-medium text-[#F7F4EE]/70">
                                     Things to bonk enemies with
                                 </h3>
 
                                 <div className="mt-6 space-y-7">
                                     {characterResult.weaponRecommendations.signature && (
                                         <div>
-                                            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#F3C969]/80">
-                                                Signature
-                                            </p>
+                                            <button
+                                                type="button"
+                                                onClick={() => toggleWeaponSection("signature")}
+                                                className="flex w-full items-center justify-between text-left"
+                                            >
+                                                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#F3C969]/80">
+                                                    Signature
+                                                </span>
 
-                                            <WeaponRecommendationCard
-                                                weapon={
-                                                    characterResult.weaponRecommendations.signature
-                                                }
-                                            />
+                                                <span className="text-[#F3C969]/70">
+                                                    {openWeaponSections.signature ? "−" : "+"}
+                                                </span>
+                                            </button>
+
+                                            {openWeaponSections.signature && (
+                                                <div className="mt-3">
+                                                    <WeaponRecommendationCard
+                                                        weapon={
+                                                            characterResult.weaponRecommendations.signature
+                                                        }
+                                                    />
+                                                </div>
+                                            )}
                                         </div>
                                     )}
 
                                     {characterResult.weaponRecommendations.premium.length > 0 && (
                                         <div>
-                                            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#C9B8F4]/80">
-                                                Premium Alternatives
-                                            </p>
+                                            <button
+                                                type="button"
+                                                onClick={() => toggleWeaponSection("premium")}
+                                                className="flex w-full items-center justify-between text-left"
+                                            >
+                                                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#C9B8F4]/80">
+                                                    Premium Alternatives
+                                                </span>
 
-                                            <div className="grid gap-3">
-                                                {characterResult.weaponRecommendations.premium.map(
-                                                    (weapon) => (
-                                                        <WeaponRecommendationCard
-                                                            key={weapon.name}
-                                                            weapon={weapon}
-                                                        />
-                                                    )
-                                                )}
-                                            </div>
+                                                <span className="text-[#C9B8F4]/70">
+                                                    {openWeaponSections.premium ? "−" : "+"}
+                                                </span>
+                                            </button>
+
+                                            {openWeaponSections.premium && (
+                                                <div className="mt-3 grid gap-3">
+                                                    {characterResult.weaponRecommendations.premium.map(
+                                                        (weapon) => (
+                                                            <WeaponRecommendationCard
+                                                                key={weapon.name}
+                                                                weapon={weapon}
+                                                            />
+                                                        )
+                                                    )}
+                                                </div>
+                                            )}
                                         </div>
                                     )}
 
                                     {characterResult.weaponRecommendations.alternatives.length > 0 && (
                                         <div>
-                                            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#98A8D8]/70">
-                                                Good Alternatives
-                                            </p>
+                                            <button
+                                                type="button"
+                                                onClick={() => toggleWeaponSection("alternatives")}
+                                                className="flex w-full items-center justify-between text-left"
+                                            >
+                                                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#98A8D8]/70">
+                                                    Good Alternatives
+                                                </span>
 
-                                            <div className="grid gap-3">
-                                                {characterResult.weaponRecommendations.alternatives.map(
-                                                    (weapon) => (
-                                                        <WeaponRecommendationCard
-                                                            key={weapon.name}
-                                                            weapon={weapon}
-                                                        />
-                                                    )
-                                                )}
-                                            </div>
+                                                <span className="text-[#98A8D8]/70">
+                                                    {openWeaponSections.alternatives ? "−" : "+"}
+                                                </span>
+                                            </button>
+
+                                            {openWeaponSections.alternatives && (
+                                                <div className="mt-3 grid gap-3">
+                                                    {characterResult.weaponRecommendations.alternatives.map(
+                                                        (weapon) => (
+                                                            <WeaponRecommendationCard
+                                                                key={weapon.name}
+                                                                weapon={weapon}
+                                                            />
+                                                        )
+                                                    )}
+                                                </div>
+                                            )}
                                         </div>
                                     )}
 
                                     {characterResult.weaponRecommendations.f2p.length > 0 && (
                                         <div>
-                                            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#98A8D8]/70">
-                                                F2P / Accessible
-                                            </p>
+                                            <button
+                                                type="button"
+                                                onClick={() => toggleWeaponSection("f2p")}
+                                                className="flex w-full items-center justify-between text-left"
+                                            >
+                                                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#98A8D8]/70">
+                                                    F2P / Accessible
+                                                </span>
 
-                                            <div className="grid gap-3">
-                                                {characterResult.weaponRecommendations.f2p.map(
-                                                    (weapon) => (
-                                                        <WeaponRecommendationCard
-                                                            key={weapon.name}
-                                                            weapon={weapon}
-                                                        />
-                                                    )
-                                                )}
-                                            </div>
+                                                <span className="text-[#98A8D8]/70">
+                                                    {openWeaponSections.f2p ? "−" : "+"}
+                                                </span>
+                                            </button>
+
+                                            {openWeaponSections.f2p && (
+                                                <div className="mt-3 grid gap-3">
+                                                    {characterResult.weaponRecommendations.f2p.map(
+                                                        (weapon) => (
+                                                            <WeaponRecommendationCard
+                                                                key={weapon.name}
+                                                                weapon={weapon}
+                                                            />
+                                                        )
+                                                    )}
+                                                </div>
+                                            )}
                                         </div>
                                     )}
                                 </div>
