@@ -129,17 +129,17 @@ export const loreEntries = {
     image: "/lore/Snezhnaya.webp",
     icon: "❄️",
     title: "Snezhnaya",
-    tag: "Classified Northern Empire",
+    tag: "Butt-frozen Northern Empire",
     summary:
-      "Status: Classified. Paimon has been advised not to comment. Multiple Fatui employees are now standing behind you.",
+      "Status: Absolutely freezing. Paimon has been advised not to go outside. Multiple Fatui members are now standing guard at her doors. She is not allowed to leave until she has been properly thawed.",
     ratings: {
       Status: "Classified",
       Risk: "⭐⭐⭐⭐⭐",
-      Warmth: "⭐☆☆☆☆",
+      Warmth: "☆☆☆☆☆",
       Secrets: "⭐⭐⭐⭐⭐",
       "Comment Permission": "⭐☆☆☆☆",
     },
     verdict:
-      "Paimon recommends pretending you never clicked this.",
+      "Paimon recommends packing two warm layers and a hot beverage if you ever click this.",
   },
 };

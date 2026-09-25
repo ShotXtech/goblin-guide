@@ -3338,4 +3338,6 @@ export const weaponDatabase = {
         notes:
             "Free fishing sword with Energy Recharge and useful Skill-focused utility. Surprisingly respectable for something obtained through fish-related suffering.",
     },
+
+
 };

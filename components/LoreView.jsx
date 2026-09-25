@@ -21,7 +21,7 @@ export default function LoreView() {
 
     if (selectedLore) {
         const lore = loreEntries[selectedLore];
-        const isClassified = selectedLore === "snezhnaya";
+        const isClassified = selectedLore === "celestia";
 
         const ratingIcons = {
             Freedom: "🌿",
@@ -152,9 +152,9 @@ export default function LoreView() {
                                 </p>
 
                                 <p className="mt-4 leading-8 text-[#C9D3F0]">
-                                    The Tsaritsa has ███████████████
+                                    The Celestia has ███████████████
                                     <br />
-                                    The Fatui are ███████████████
+                                    The Shades are ███████████████
                                     <br />
                                     Several ███████████████ have been ███████████
                                     <br />
@@ -276,7 +276,7 @@ export default function LoreView() {
                         >
                             {nation.image && (
                                 <div
-                                    className={`absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-105 ${key === "snezhnaya" ? "opacity-35 grayscale" : "opacity-90"
+                                    className={`absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-105 ${key === "celestia" ? "opacity-35 grayscale" : "opacity-90"
                                         }`}
                                     style={{ backgroundImage: `url(${nation.image})` }}
                                 />
@@ -288,11 +288,11 @@ export default function LoreView() {
                             <div className="relative z-10 flex min-h-72 flex-col items-center justify-center p-6 text-center">
                                 <div className="absolute right-5 top-5">
                                     <span className="rounded-full border border-[#98A8D8]/35 bg-[#050816]/45 px-4 py-1 text-xs uppercase tracking-[0.22em] text-[#D9E1FF]/80 backdrop-blur">
-                                        {key === "snezhnaya" ? "Classified" : "Archive"}
+                                        {key === "celestia" ? "Classified" : "Archive"}
                                     </span>
                                 </div>
 
-                                {key === "snezhnaya" && (
+                                {key === "celestia" && (
                                     <div className="mb-4 text-5xl opacity-80">🔒</div>
                                 )}
 
@@ -304,7 +304,7 @@ export default function LoreView() {
                                     {nation.tag}
                                 </p>
 
-                                {key === "snezhnaya" && (
+                                {key === "celestia" && (
                                     <p className="mt-5 max-w-48 text-sm leading-6 text-slate-300/80">
                                         Paimon has been advised not to comment.
                                     </p>
